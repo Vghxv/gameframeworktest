@@ -43,7 +43,6 @@ private:
 // Operations
 public:
 	void SetFullScreen(bool);
-
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMainFrame)
@@ -72,6 +71,7 @@ protected:
 	afx_msg void OnToggleFullscreen();
 	afx_msg void OnPaint();
 	afx_msg void OnButtonFullscreen();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

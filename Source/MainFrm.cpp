@@ -99,10 +99,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
+	
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+		CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 
 	// TODO: Delete these three lines if you don't want the toolbar to
 	//  be dockable
@@ -119,6 +120,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//
 	pMenu = GetMenu();
 	//
+	
+
+	m_wndToolBar.ShowWindow(SW_HIDE);
+	m_wndStatusBar.ShowWindow(SW_SHOW);
+	// SetMenu(NULL);
+
+	SetWindowText(_T("Giraffe Adventure"));
+
 	// 如果是Full Screen的話，隱藏ToolBar, StatusBar, Menu
 	//
 	if (isFullScreen) {
@@ -138,8 +147,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	//	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE
 	//		| WS_THICKFRAME | WS_SYSMENU | WS_MINIMIZEBOX;
 
-	cs.cx = 640; cs.cy = 480;
-	cs.style = WS_BORDER | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+	cs.cx = SIZE_X; cs.cy = SIZE_Y;
+	cs.style = WS_SYSMENU | WS_MINIMIZEBOX;
     cs.x = (::GetSystemMetrics(SM_CXSCREEN) - cs.cx) / 2; 
 	cs.y = (::GetSystemMetrics(SM_CYSCREEN) - cs.cy) / 2; 
 	//  Set priority level
@@ -175,7 +184,9 @@ void CMainFrame::SetFullScreen(bool isFull)
 		//
 		// Store window position
 		//
+
 		GetWindowRect(WindowRect);
+
 		if (!game_framework::CDDraw::SetFullScreen(true))
 			FullScreenError = true;
 		//
@@ -188,6 +199,7 @@ void CMainFrame::SetFullScreen(bool isFull)
 		//
 		m_wndToolBar.ShowWindow(SW_HIDE);
 		m_wndStatusBar.ShowWindow(SW_HIDE);
+
 		ModifyStyle(WS_DLGFRAME, 0);
 		SetMenu(NULL);
 	}
@@ -198,11 +210,11 @@ void CMainFrame::SetFullScreen(bool isFull)
 		//
 		// Recover menu, tool bar, and status bar
 		//
-		SetMenu(pMenu);
+		//SetMenu(NULL);
 		if (isToolBarVisible)
 			m_wndToolBar.ShowWindow(SW_NORMAL);
-		if (isStatusBarVisible)
-			m_wndStatusBar.ShowWindow(SW_NORMAL);
+		m_wndStatusBar.ShowWindow(SW_SHOW);
+		SetMenu(pMenu);
 		ModifyStyle(0, WS_DLGFRAME);
 		//
 		// Restore window position
@@ -228,6 +240,7 @@ void CMainFrame::OnPaint()
 	// Do not call CFrameWnd::OnPaint() for painting messages
 	if (isFullScreen)
 		return;
+
 	int extra_height=0;
 	CRect ClientRect;
 	game_framework::CDDraw::GetClientRect(ClientRect);
@@ -244,7 +257,8 @@ void CMainFrame::OnPaint()
 	extra_height += GetSystemMetrics(SM_CYMENU);
 	CRect WindowRect;
 	GetWindowRect(WindowRect);
-	MoveWindow(WindowRect.left, WindowRect.top, ClientRect.Width(), ClientRect.Height() + extra_height);
+
+	MoveWindow(WindowRect.left, WindowRect.top, SIZE_X, SIZE_Y + extra_height);
 }
 
 void CMainFrame::OnButtonFullscreen() 
