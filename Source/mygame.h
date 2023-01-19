@@ -43,6 +43,7 @@
 #include "CBouncingBall.h"
 #include "CPractice.h"
 #include "CGameMap.h"
+#include "Hero.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants

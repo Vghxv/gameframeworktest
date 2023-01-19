@@ -34,7 +34,6 @@
 #define IDB_BITMAP3                     157
 #define IDB_PRACTICE                    158
 #define IDB_BLUE                        171
-#define IDB_BITMAP5                     172
 #define IDB_GREEN                       172
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
