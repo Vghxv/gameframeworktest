@@ -6,13 +6,12 @@ namespace game_framework{
 		int getX2();
 		int getY1();
 		int getY2();
-		void LoadBitmap();
 		void OnMove();
 		void OnShow();
 		void SetXY(int, int);
+		void LoadBitmap();
 	private:
-		int x, y;
-		
-		CMovingBitmap animation;
+		int _x, _y;
+		CMovingBitmap _animation;
+	};
 }
-};

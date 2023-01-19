@@ -108,9 +108,10 @@ IDB_BITMAP3             BITMAP                  "..\\res\\bitmap3.bmp"
 
 IDB_PRACTICE            BITMAP                  "..\\res\\bitmap4.bmp"
 
-IDB_BLUE                BITMAP                  "..\\res\\bmp00001.bmp"
+IDB_BLUE                BITMAP                  "..\\res\\blue.bmp"
 
-IDB_GREEN               BITMAP                  "..\\res\\bitmap5.bmp"
+IDB_GREEN               BITMAP                  "..\\res\\green.bmp"
+
 
 
 /////////////////////////////////////////////////////////////////////////////

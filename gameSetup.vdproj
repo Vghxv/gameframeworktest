@@ -15,20 +15,8 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_097E3779E8BBA9CA5DAE30977A50B43D"
-        "OwnerKey" = "8:_FEB1C521B758467A98F7B43033E60D12"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1540FE9C6B314C288322AF99DA86F4DD"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_18551F45124B37A7F2551518696B3A9D"
-        "OwnerKey" = "8:_FEB1C521B758467A98F7B43033E60D12"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -41,18 +29,6 @@
         {
         "MsmKey" = "8:_4CD5A65C339E4FFC9F16D447758FCED0"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4FA6189381B2B341F9DF0EE55A630451"
-        "OwnerKey" = "8:_FEB1C521B758467A98F7B43033E60D12"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_539620F16DA6EB77B724DAF59828873A"
-        "OwnerKey" = "8:_FEB1C521B758467A98F7B43033E60D12"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -77,12 +53,6 @@
         {
         "MsmKey" = "8:_E350ABF676DB4825AB1A7955895D6884"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E51B6D6B39B1335A9E2B8489D713BD17"
-        "OwnerKey" = "8:_FEB1C521B758467A98F7B43033E60D12"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -185,26 +155,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_097E3779E8BBA9CA5DAE30977A50B43D"
-            {
-            "SourcePath" = "8:VCRUNTIME140D.dll"
-            "TargetName" = "8:VCRUNTIME140D.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_A62E3FBC3C2C4A6D9157A8D6CE468FB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1540FE9C6B314C288322AF99DA86F4DD"
             {
             "SourcePath" = "8:Sounds\\ding.wav"
@@ -223,26 +173,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18551F45124B37A7F2551518696B3A9D"
-            {
-            "SourcePath" = "8:DDRAW.dll"
-            "TargetName" = "8:DDRAW.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_A62E3FBC3C2C4A6D9157A8D6CE468FB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2ED4D295E9CF44188DFB0BBDB4F84009"
@@ -283,46 +213,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4FA6189381B2B341F9DF0EE55A630451"
-            {
-            "SourcePath" = "8:ucrtbased.dll"
-            "TargetName" = "8:ucrtbased.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_A62E3FBC3C2C4A6D9157A8D6CE468FB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_539620F16DA6EB77B724DAF59828873A"
-            {
-            "SourcePath" = "8:mfc140d.dll"
-            "TargetName" = "8:mfc140d.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_A62E3FBC3C2C4A6D9157A8D6CE468FB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD4AB81BDEA24529AE6D21DC5B088984"
@@ -403,26 +293,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E51B6D6B39B1335A9E2B8489D713BD17"
-            {
-            "SourcePath" = "8:MSVCP140D.dll"
-            "TargetName" = "8:MSVCP140D.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_A62E3FBC3C2C4A6D9157A8D6CE468FB2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE9DD6B69FFF4437AC5B705A1846A163"

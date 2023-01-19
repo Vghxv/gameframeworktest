@@ -12,19 +12,11 @@ namespace game_framework {
 	}
 
 	void CGameStateInit::OnInit() {
-		//
-		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-		//
-		ShowInitProgress(0, "HI");	// 一開始的loading進度為0%
-		//
-		// 開始載入資料
-		//
+		ShowInitProgress(0, "Start loading");	
 		logo.LoadBitmap(IDB_BACKGROUND);
-		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-		//
+		Sleep(300);
+		
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
-		//
 	}
 
 	void CGameStateInit::OnBeginState() {
@@ -47,14 +39,9 @@ namespace game_framework {
 
 	void CGameStateInit::OnShow()
 	{
-		//
-		// 貼上logo
-		//
-		logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
-		logo.ShowBitmap();
-		//
+		//logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
+		//logo.ShowBitmap();
 		// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
-		//
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, *fp;
 		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -166,34 +153,27 @@ namespace game_framework {
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	{
-		//
-		// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-		//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-		//
 		ShowInitProgress(33, "hi");	// 接個前一個狀態的進度，此處進度視為33%
-		//
-		// 開始載入資料
-		//
-		int i;
-		for (i = 0; i < NUMBALLS; i++)
+		
+		for (int i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形
 		eraser.LoadBitmap();
 		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 		practice.LoadBitmap(IDB_BITMAP3);
 		c_practice.LoadBitmap();
 		gamemap.LoadBitmap();
+		
 		//
 		// 完成部分Loading動作，提高進度
 		//
 		ShowInitProgress(50, "mid");
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-		//
-		// 繼續載入其他資料
-		//
+		
 		help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
 		corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 		//corner.ShowBitmap(background);							// 將corner貼到background
 		bball.LoadBitmap();										// 載入圖形
+		brendan.LoadBitmap();
 		hits_left.LoadBitmap();
 		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
@@ -288,7 +268,8 @@ namespace game_framework {
 		corner.ShowBitmap();
 		practice.ShowBitmap();
 		c_practice.OnShow();
-
+		
+		brendan.OnShow();
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

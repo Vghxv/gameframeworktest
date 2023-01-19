@@ -29,7 +29,7 @@ namespace game_framework {
 		//	animation.AddBitmap(filename[i], RGB(0, 0, 0));
 		animation.LoadBitmap({ ".\\Bitmaps\\ball1.bmp", ".\\Bitmaps\\ball2.bmp", ".\\Bitmaps\\ball3.bmp", ".\\Bitmaps\\ball4.bmp" },RGB(0,0,0));
 		animation.SelectShowBitmap(0);
-		animation.SetAnimation(1000, false);
+		animation.SetAnimation(10, false);
 	}
 
 	void CBouncingBall::OnMove()
@@ -63,6 +63,7 @@ namespace game_framework {
 	void CBouncingBall::OnShow()
 	{
 		animation.SetTopLeft(x, y);
+		
 		animation.ShowBitmap();
 		
 	}
