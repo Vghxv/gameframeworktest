@@ -126,7 +126,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.ShowWindow(SW_SHOW);
 	// SetMenu(NULL);
 
-	SetWindowText(_T("Giraffe Adventure"));
+	SetWindowText(_T("pokemon real life simulator"));
 
 	// 如果是Full Screen的話，隱藏ToolBar, StatusBar, Menu
 	//

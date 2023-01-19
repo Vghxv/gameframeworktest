@@ -149,6 +149,7 @@ namespace game_framework {
 		practice.SetTopLeft(picX, picY);
 		c_practice.OnMove();
 		gamemap.OnMove();
+		brendan.OnMove();
 	}
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -190,13 +191,13 @@ namespace game_framework {
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		if (nChar == KEY_LEFT)
-			eraser.SetMovingLeft(true);
+			brendan.SetMovingLeft(true);
 		if (nChar == KEY_RIGHT)
-			eraser.SetMovingRight(true);
+			brendan.SetMovingRight(true);
 		if (nChar == KEY_UP)
-			eraser.SetMovingUp(true);
+			brendan.SetMovingUp(true);
 		if (nChar == KEY_DOWN)
-			eraser.SetMovingDown(true);
+			brendan.SetMovingDown(true);
 		gamemap.OnkeyDown(nChar);
 	}
 
@@ -207,13 +208,13 @@ namespace game_framework {
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		if (nChar == KEY_LEFT)
-			eraser.SetMovingLeft(false);
+			brendan.SetMovingLeft(false);
 		if (nChar == KEY_RIGHT)
-			eraser.SetMovingRight(false);
+			brendan.SetMovingRight(false);
 		if (nChar == KEY_UP)
-			eraser.SetMovingUp(false);
+			brendan.SetMovingUp(false);
 		if (nChar == KEY_DOWN)
-			eraser.SetMovingDown(false);
+			brendan.SetMovingDown(false);
 	}
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作

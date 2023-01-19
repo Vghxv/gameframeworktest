@@ -28,13 +28,14 @@ namespace game_framework {
 		//for (int i = 0; i < 4; i++)	// 載入動畫(由4張圖形構成)
 		//	animation.AddBitmap(filename[i], RGB(0, 0, 0));
 		animation.LoadBitmap({ ".\\Bitmaps\\ball1.bmp", ".\\Bitmaps\\ball2.bmp", ".\\Bitmaps\\ball3.bmp", ".\\Bitmaps\\ball4.bmp" },RGB(0,0,0));
-		animation.SelectShowBitmap(0);
-		animation.SetAnimation(10, false);
+		
+		//animation.ToggleAnimation();
 	}
 
 	void CBouncingBall::OnMove()
 	{
-		/*if (rising) {			// 上升狀態
+
+		if (rising) {			// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;	// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)
 				velocity--;		// 受重力影響，下次的上升速度降低
@@ -54,16 +55,17 @@ namespace game_framework {
 				rising = true;	// 探底反彈，下次改為上升
 				velocity = initial_velocity; // 重設上升初始速度
 			}
-		}*/
+		}
+		
 		//animation.OnMove();
 		//animation.SelectShowBitmap(0);
-		//animation.SetAnimation(1, false);		// 執行一次animation.OnMove()，animation才會換圖
+				// 執行一次animation.OnMove()，animation才會換圖
 	}
 
 	void CBouncingBall::OnShow()
 	{
 		animation.SetTopLeft(x, y);
-		
+		animation.SetAnimation(150, false);
 		animation.ShowBitmap();
 		
 	}
