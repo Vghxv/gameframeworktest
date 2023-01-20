@@ -139,15 +139,15 @@ namespace game_framework {
 		// 移動彈跳的球
 		//
 		bball.OnMove();
-		if (picX <= SIZE_Y) {
+		/*if (picX <= SIZE_Y) {
 			picX += 5;
 			picY += 5;
 		}
 		else {
 			picX = picY = 0;
 		}
-		practice.SetTopLeft(picX, picY);
-		c_practice.OnMove();
+		practice.SetTopLeft(picX, picY);*/
+		//c_practice.OnMove();
 		gamemap.OnMove();
 		brendan.OnMove();
 	}
@@ -160,8 +160,8 @@ namespace game_framework {
 			ball[i].LoadBitmap();								// 載入第i個球的圖形
 		eraser.LoadBitmap();
 		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
-		practice.LoadBitmap(IDB_BITMAP3);
-		c_practice.LoadBitmap();
+		//practice.LoadBitmap(IDB_BITMAP3);
+		//c_practice.LoadBitmap();
 		gamemap.LoadBitmap();
 		
 		//
@@ -267,8 +267,8 @@ namespace game_framework {
 		corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
 		corner.ShowBitmap();
-		practice.ShowBitmap();
-		c_practice.OnShow();
+		//practice.ShowBitmap();
+		//c_practice.OnShow();
 		
 		brendan.OnShow();
 	}

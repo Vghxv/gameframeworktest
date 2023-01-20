@@ -334,7 +334,6 @@
     <Image Include="res\bitmap4.bmp" />
     <Image Include="res\blue.bmp" />
     <Image Include="res\green.bmp" />
-    <Image Include="RES\hero_all.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

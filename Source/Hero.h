@@ -1,5 +1,4 @@
 namespace game_framework{
-
 	class Hero {
 		enum Direction
 		{
@@ -22,13 +21,13 @@ namespace game_framework{
 		void SetMovingRight(bool flag);
 		void SetXY(int, int);
 		void LoadBitmap();
-		
 	private:
 		int _x, _y;
+		Direction _direction;
 		CMovingBitmap _animation;
-		bool isMovingDown;			// 是否正在往下移動
-		bool isMovingLeft;			// 是否正在往左移動
-		bool isMovingRight;			// 是否正在往右移動
-		bool isMovingUp;			// 是否正在往上移動
+		bool _isMovingDown;			// 是否正在往下移動
+		bool _isMovingLeft;			// 是否正在往左移動
+		bool _isMovingRight;			// 是否正在往右移動
+		bool _isMovingUp;			// 是否正在往上移動
 	};
 }
