@@ -104,37 +104,13 @@ IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
-IDB_uh                  BITMAP                  "..\\res\\bitmap3.bmp"
-
 IDB_PRACTICE            BITMAP                  "..\\res\\bitmap4.bmp"
 
 IDB_BLUE                BITMAP                  "..\\res\\blue.bmp"
 
 IDB_GREEN               BITMAP                  "..\\res\\green.bmp"
 
-IDB_HERO_1              BITMAP                  "..\\res\\hero_1.bmp"
-										
-IDB_HERO_2              BITMAP                  "..\\res\\hero_2.bmp"
-											
-IDB_HERO_3              BITMAP                  "..\\res\\hero_3.bmp"
-											
-IDB_HERO_4              BITMAP                  "..\\res\\hero_4.bmp"
-											
-IDB_HERO_5              BITMAP                  "..\\res\\hero_5.bmp"
-											
-IDB_HERO_6              BITMAP                  "..\\res\\hero_6.bmp"
-										
-IDB_HERO_7              BITMAP                  "..\\res\\hero_7.bmp"
-											
-IDB_HERO_8              BITMAP                  "..\\res\\hero_8.bmp"
-											
-IDB_HERO_9              BITMAP                  "..\\res\\hero_9.bmp"
-										
-IDB_HERO_10             BITMAP                  "..\\res\\hero_10.bmp"
-											
-IDB_HERO_11             BITMAP                  "..\\res\\hero_11.bmp"
-										
-IDB_HERO_12             BITMAP                  "..\\res\\hero_12.bmp"
+
 
 
 /////////////////////////////////////////////////////////////////////////////
