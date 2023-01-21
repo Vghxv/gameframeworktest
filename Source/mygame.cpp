@@ -87,24 +87,24 @@ namespace game_framework {
 		//for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
 		//	int x_pos = i % BALL_PER_ROW;
 		//	int y_pos = i / BALL_PER_ROW;
-		//	ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
-		//	ball[i].SetDelay(x_pos);
-		//	ball[i].SetIsAlive(true);
-		//}
-		//eraser.Initialize();
-		//background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
-		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-		//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		test.SetTopLeft(0, -40);
-		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
-		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
-		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
+//	ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
+//	ball[i].SetDelay(x_pos);
+//	ball[i].SetIsAlive(true);
+//}
+//eraser.Initialize();
+//background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
+//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
+//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
+//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
+test.SetTopLeft(0, -40);
+CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
+CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
+CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
-		
+
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
 		// 移動背景圖的座標
@@ -145,13 +145,13 @@ namespace game_framework {
 		//gamemap.OnMove();
 
 		brendan.OnMove();
-		
+
 	}
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	{
 		ShowInitProgress(33, "hi");	// 接個前一個狀態的進度，此處進度視為33%
-		
+
 		//for (int i = 0; i < NUMBALLS; i++)
 		//	ball[i].LoadBitmap();								// 載入第i個球的圖形
 		//eraser.LoadBitmap();
@@ -165,13 +165,13 @@ namespace game_framework {
 		//
 		ShowInitProgress(50, "mid");
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-		
+
 		help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
 		corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 		//corner.ShowBitmap(background);							// 將corner貼到background
 		bball.LoadBitmap();										// 載入圖形
 		brendan.LoadBitmap();
-		
+
 		hits_left.LoadBitmap();
 		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
@@ -187,14 +187,16 @@ namespace game_framework {
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		if (nChar == KEY_LEFT)
-			brendan.SetMovingLeftEnable(true);
-		if (nChar == KEY_RIGHT)
-			brendan.SetMovingRightEnable(true);
-		if (nChar == KEY_UP)
-			brendan.SetMovingUpEnable(true);
-		if (nChar == KEY_DOWN)
-			brendan.SetMovingDownEnable(true);
+		if(!brendan.IsMoving()){
+			if (nChar == KEY_LEFT)
+				brendan.SetMovingLeftEnable(true);
+			if (nChar == KEY_RIGHT)
+				brendan.SetMovingRightEnable(true);
+			if (nChar == KEY_UP)
+				brendan.SetMovingUpEnable(true);
+			if (nChar == KEY_DOWN)
+				brendan.SetMovingDownEnable(true);			
+		}
 		
 	
 	}

@@ -26,6 +26,7 @@ namespace game_framework{
 		void SetMovingRightEnable(bool flag);
 		void SetXY(int, int);
 		bool IsAnimationDone();
+		bool IsMoving();
 		void SelectShowBitmap(int index);
 		void LoadBitmap();
 		void init();

@@ -173,4 +173,7 @@ namespace game_framework {
 	void Hero::SetDirection(Direction direction) {
 		_direction = direction;
 	}
+	bool Hero::IsMoving() {
+		return _isMovingDown || _isMovingUp || _isMovingLeft || _isMovingRight;
+	}
 }
