@@ -1,5 +1,11 @@
 namespace game_framework{
 	class Hero {
+	enum Direction {
+		up,
+		down,
+		left,
+		right
+	};
 	public :
 		Hero();
 		int getX1();
@@ -7,9 +13,9 @@ namespace game_framework{
 		int getY1();
 		int getY2();
 		int getDirection();
-		void OnMove(int deltaX, int deltaY);
+		void OnMove();
 		void OnShow();
-		void SetDirection(int direction);
+		void SetDirection(Direction direction);
 		void SetMovingUp(bool flag);
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);
@@ -24,8 +30,6 @@ namespace game_framework{
 		void LoadBitmap();
 
 	protected:
-		int _x, _y;
-		int _direction;
 		CMovingBitmap _animation;
 		bool _isMovingUp;			
 		bool _isMovingDown;			
@@ -35,11 +39,14 @@ namespace game_framework{
 		bool _isMovingDownEnable;
 		bool _isMovingLeftEnable;
 		bool _isMovingRightEnable;
-
 	private:
-		int _velocity;
-		int _moveX;
-		int _moveY;
+		int _x, _y;
+		Direction _direction;
+		int _v;
+		bool _walkiter;
+		int move;
+		clock_t last_time;
+		bool _walkfirst;
 
 	};
 }

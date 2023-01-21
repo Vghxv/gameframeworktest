@@ -144,7 +144,7 @@ namespace game_framework {
 
 		//gamemap.OnMove();
 
-		brendan.OnMove(1,1);
+		brendan.OnMove();
 		
 	}
 
@@ -183,11 +183,12 @@ namespace game_framework {
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		
 		const char KEY_LEFT = 0x25; // keyboard左箭頭
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
+		
+
 		if (nChar == KEY_LEFT)
 			brendan.SetMovingLeftEnable(true);
 		if (nChar == KEY_RIGHT)
@@ -196,7 +197,7 @@ namespace game_framework {
 			brendan.SetMovingUpEnable(true);
 		if (nChar == KEY_DOWN)
 			brendan.SetMovingDownEnable(true);
-		//gamemap.OnkeyDown(nChar);
+		
 	
 	}
 
@@ -207,14 +208,14 @@ namespace game_framework {
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		if (nChar == KEY_LEFT)
+		/*if (nChar == KEY_LEFT)
 			brendan.SetMovingLeftEnable(false);
 		if (nChar == KEY_RIGHT)
 			brendan.SetMovingRightEnable(false);
 		if (nChar == KEY_UP)
 			brendan.SetMovingUpEnable(false);
 		if (nChar == KEY_DOWN)
-			brendan.SetMovingDownEnable(false);
+			brendan.SetMovingDownEnable(false);*/
 
 	}
 
