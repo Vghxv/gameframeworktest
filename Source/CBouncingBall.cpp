@@ -24,17 +24,11 @@ namespace game_framework {
 
 	void CBouncingBall::LoadBitmap()
 	{
-		//char *filename[4] = { ".\\Bitmaps\\ball1.bmp",".\\Bitmaps\\ball2.bmp",".\\Bitmaps\\ball3.bmp",".\\Bitmaps\\ball4.bmp" };
-		//for (int i = 0; i < 4; i++)	// 載入動畫(由4張圖形構成)
-		//	animation.AddBitmap(filename[i], RGB(0, 0, 0));
-		animation.LoadBitmap({ ".\\Bitmaps\\ball1.bmp", ".\\Bitmaps\\ball2.bmp", ".\\Bitmaps\\ball3.bmp", ".\\Bitmaps\\ball4.bmp" },RGB(0,0,0));
-		
-		//animation.ToggleAnimation();
+		animation.LoadBitmap({ "res/ball1.bmp", "res/ball2.bmp", "res/ball3.bmp", "res/ball4.bmp" },RGB(0,0,0));		
 	}
 
 	void CBouncingBall::OnMove()
 	{
-
 		if (rising) {			// 上升狀態
 			if (velocity > 0) {
 				y -= velocity;	// 當速度 > 0時，y軸上升(移動velocity個點，velocity的單位為 點/次)

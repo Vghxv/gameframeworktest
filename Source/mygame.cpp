@@ -187,8 +187,6 @@ namespace game_framework {
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		
-
 		if (nChar == KEY_LEFT)
 			brendan.SetMovingLeftEnable(true);
 		if (nChar == KEY_RIGHT)
@@ -254,7 +252,7 @@ namespace game_framework {
 		//background.ShowBitmap();			// 貼上背景圖
 		test.ShowBitmap();
 		//gamemap.OnShow();
-		help.ShowBitmap();					// 貼上說明圖
+		//help.ShowBitmap();					// 貼上說明圖
 		hits_left.ShowBitmap();
 		
 		

@@ -63,7 +63,7 @@ namespace game_framework {
 		clock_t start_time;
 		long long DELAYCYCLE = 500;
 		int temp_current_stage = 0;
-
+		clock_t last_time;
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖

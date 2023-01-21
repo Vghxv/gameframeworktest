@@ -28,6 +28,7 @@ namespace game_framework{
 		bool IsAnimationDone();
 		void SelectShowBitmap(int index);
 		void LoadBitmap();
+		void init();
 
 	protected:
 		CMovingBitmap _animation;
@@ -42,7 +43,6 @@ namespace game_framework{
 	private:
 		int _x, _y;
 		Direction _direction;
-		int _v;
 		bool _walkiter;
 		int move;
 		clock_t last_time;

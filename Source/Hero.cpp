@@ -20,16 +20,18 @@
 #define HERO_RIGHT_WALK_2 11
 
 namespace game_framework {
-	
+	void Hero::init() {
+		_isMovingUpEnable = _isMovingDownEnable = _isMovingLeftEnable = _isMovingRightEnable = false;
+
+	}
 	Hero::Hero() {
 		_x = _y = 0;
-		_v=0;
 		_walkiter = true;
 		move = 0;
 		_direction = down;
 		_walkfirst=true;
 		_isMovingUp=_isMovingDown=_isMovingLeft=_isMovingRight=false;
-		_isMovingUpEnable = _isMovingDownEnable = _isMovingLeftEnable = _isMovingRightEnable = false;
+		init();
 	}
 	int Hero::getX1() {
 		return _x;
@@ -45,12 +47,12 @@ namespace game_framework {
 	}
 	void Hero::OnMove() {
 
-		int step = 4;
+		int step = 8;
 
-		if (move >= 64) {
+		if (move == 64) {
 			move = 0;
 			_isMovingUp = _isMovingDown = _isMovingLeft = _isMovingRight = false;
-
+			_walkiter = !_walkiter;
 		}
 		if (_isMovingLeft && _direction==left) {
 			_x -= step;
@@ -74,7 +76,7 @@ namespace game_framework {
 		_animation.SetTopLeft(_x, _y);
 		if (_isMovingDown) {
 			if (_direction == down) {
-				_animation.SelectShowBitmap(HERO_DOWN_WALK_1);
+				_walkiter?_animation.SelectShowBitmap(HERO_DOWN_WALK_1): _animation.SelectShowBitmap(HERO_DOWN_WALK_2);
 			}
 			else {
 				_animation.SelectShowBitmap(HERO_DOWN);
@@ -86,7 +88,7 @@ namespace game_framework {
 		}
 		if (_isMovingUp) {
 			if (_direction == up) {
-				_animation.SelectShowBitmap(HERO_UP_WALK_1);
+				_walkiter?_animation.SelectShowBitmap(HERO_UP_WALK_1): _animation.SelectShowBitmap(HERO_UP_WALK_2);
 			}
 			else {
 				_animation.SelectShowBitmap(HERO_UP);
@@ -98,7 +100,7 @@ namespace game_framework {
 		}
 		if (_isMovingLeft) {
 			if (_direction == left) {
-				_animation.SelectShowBitmap(HERO_LEFT_WALK_1);
+				_walkiter?_animation.SelectShowBitmap(HERO_LEFT_WALK_1): _animation.SelectShowBitmap(HERO_LEFT_WALK_2);
 			}
 			else {
 				_animation.SelectShowBitmap(HERO_LEFT);
@@ -110,7 +112,7 @@ namespace game_framework {
 		}
 		if (_isMovingRight) {
 			if (_direction == right) {
-				_animation.SelectShowBitmap(HERO_RIGHT_WALK_1);
+				_walkiter?_animation.SelectShowBitmap(HERO_RIGHT_WALK_1): _animation.SelectShowBitmap(HERO_RIGHT_WALK_2);
 			}
 			else {
 				_animation.SelectShowBitmap(HERO_RIGHT);
@@ -136,32 +138,6 @@ namespace game_framework {
 			_isMovingRight = true;
 			last_time = clock();
 		}
-		
-		/*
-		else {
-			_animation.SelectShowBitmap(2);
-		}
-		if (_isMovingRightEnable) {
-			_animation.SelectShowBitmap(9);
-		}
-		else {
-			_animation.SelectShowBitmap(9);
-		}
-		if (_isMovingUpEnable) {
-			_animation.SelectShowBitmap(1);
-		}
-		else {
-			_animation.SelectShowBitmap(1);
-		}
-		if (_isMovingDownEnable) {
-			*/
-			/*_walkiter?_animation.SelectShowBitmap(3) :_animation.SelectShowBitmap(6);
-			if (clock() - last_time >= 500) {
-				last_time = clock();
-				_walkiter = !_walkiter;
-			}*/
-
-		
 		_animation.ShowBitmap(0.8);
 	}
 	void Hero::SetMovingDown(bool flag){_isMovingDown = flag;}
