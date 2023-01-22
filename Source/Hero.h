@@ -43,11 +43,12 @@ namespace game_framework{
 		bool _isMovingRightEnable;
 	private:
 		int _x, _y;
+		int _v;
 		Direction _direction;
 		bool _walkiter;
 		int move;
 		clock_t last_time;
-		bool _walkfirst;
+		bool _walkalmostdone;
 
 	};
 }
