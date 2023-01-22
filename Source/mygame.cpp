@@ -87,19 +87,19 @@ namespace game_framework {
 		//for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
 		//	int x_pos = i % BALL_PER_ROW;
 		//	int y_pos = i / BALL_PER_ROW;
-//	ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
-//	ball[i].SetDelay(x_pos);
-//	ball[i].SetIsAlive(true);
-//}
-//eraser.Initialize();
-//background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
-//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-test.SetTopLeft(0, -40);
-CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
-CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
-CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
+		//	ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
+		//	ball[i].SetDelay(x_pos);
+		//	ball[i].SetIsAlive(true);
+		//}
+		//eraser.Initialize();
+		//background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
+		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
+		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
+		//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
+		test.SetTopLeft(0, -32);
+		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
+		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
+		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -144,7 +144,7 @@ CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 
 		//gamemap.OnMove();
 
-		brendan.OnMove();
+		brendan.OnMove(false);
 
 	}
 
@@ -159,7 +159,7 @@ CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 		//practice.LoadBitmap(IDB_BITMAP3);
 		//c_practice.LoadBitmap();
 		//gamemap.LoadBitmap();
-		test.LoadBitmap("res/grass1.bmp");
+		test.LoadBitmap("res/grass64.bmp");
 		//
 		// 完成部分Loading動作，提高進度
 		//

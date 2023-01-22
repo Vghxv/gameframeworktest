@@ -31,6 +31,9 @@ namespace game_framework {
 		_direction = down;
 		_walkalmostdone=false;
 		_isMovingUp=_isMovingDown=_isMovingLeft=_isMovingRight=false;
+		_v = 1;
+		_once = true;
+		_slowdown = false;
 		init();
 	}
 	int Hero::getX1() {
@@ -45,38 +48,51 @@ namespace game_framework {
 	int Hero::getY2() {
 		return _y + _animation.Height();
 	}
-	void Hero::OnMove() {
+	void Hero::OnMove(bool blocked) {
 
-		int step = 4;
+		int step = _v;
 
-		if (move == 64) {
+		if (move >= 64) {
 			move = 0;
 			_walkiter = !_walkiter;
 			_isMovingUp = _isMovingDown = _isMovingLeft = _isMovingRight = false;
 			_walkalmostdone = false;
+			_slowdown = false;
+			_once = true;
 		}
-		else if (move >= 32) {
+		if (_v > 8&&_once) {
 			_walkalmostdone = true;
+			_slowdown = true;
+			_once = false;
 		}
-		if (_isMovingLeft && _direction==left) {
-			_x -= step;
+		if (!blocked) {
+			if (_isMovingLeft && _direction == left) {
+				_x -= step;
+				move += step;
+				_slowdown ? _v-- : _v++;
+			}
+			else if (_isMovingRight && _direction == right) {
+				_x += step;
+				move += step;
+				_slowdown ? _v-- : _v++;
+			}
+			else if (_isMovingUp && _direction == up) {
+				_y -= step;
+				move += step;
+				_slowdown ? _v-- : _v++;
+			}
+			else if (_isMovingDown && _direction == down) {
+				_y += step;
+				move += step;
+				_slowdown ? _v-- : _v++;
+			}
+		}
+		else {
 			move += step;
-		}
-		else if (_isMovingRight && _direction==right) {
-			_x += step;
-			move += step;
-		}
-		else if (_isMovingUp && _direction==up) {
-			_y -= step;
-			move += step;
-		}
-		else if (_isMovingDown && _direction==down) {
-			_y += step;
-			move+=step;
+			_slowdown ? _v-- : _v++;
 		}
 	}
 	void Hero::OnShow() {
-	
 		_animation.SetTopLeft(_x, _y);
 		if (_isMovingDown) {
 			if (_direction == down && !_walkalmostdone) {
@@ -86,9 +102,6 @@ namespace game_framework {
 				_animation.SelectShowBitmap(HERO_DOWN);
 				_direction = down;			
 			}
-		}
-		if (_direction == down&& !_isMovingDown) {
-			_animation.SelectShowBitmap(HERO_DOWN);
 		}
 		if (_isMovingUp) {
 			if (_direction == up && !_walkalmostdone) {
@@ -127,23 +140,18 @@ namespace game_framework {
 			_animation.SelectShowBitmap(HERO_RIGHT);
 		}
 		if (_isMovingUpEnable) {
-
-			if(_direction==up)_isMovingUp = true;
-			//last_time = clock();
+			if (_direction == up)_isMovingUp = true;
 		}
 		if (_isMovingDownEnable) {
 			if(_direction==down)_isMovingDown = true;
-			//last_time = clock();
 		}
 		if (_isMovingLeftEnable) {
 			if(_direction==left)_isMovingLeft = true;
-			//last_time = clock();
 		}
 		if (_isMovingRightEnable) {
 			if(_direction==right)_isMovingRight = true;
-			//last_time = clock();
 		}
-		_animation.ShowBitmap(0.8);
+		_animation.ShowBitmap();
 	}
 	void Hero::SetMovingDown(bool flag){_isMovingDown = flag;}
 	void Hero::SetMovingLeft(bool flag){_isMovingLeft = flag;}

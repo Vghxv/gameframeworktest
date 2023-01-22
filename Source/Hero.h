@@ -13,7 +13,7 @@ namespace game_framework{
 		int getY1();
 		int getY2();
 		int getDirection();
-		void OnMove();
+		void OnMove(bool blocked);
 		void OnShow();
 		void SetDirection(Direction direction);
 		void SetMovingUp(bool flag);
@@ -49,6 +49,8 @@ namespace game_framework{
 		int move;
 		clock_t last_time;
 		bool _walkalmostdone;
+		bool _slowdown;
+		bool _once;
 
 	};
 }
