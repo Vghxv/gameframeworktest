@@ -20,6 +20,7 @@
 #define ENABLE_STATUSBAR     false      // 是否關閉 statusbar
 #define RESOLUTION_X     1920           // 全螢幕用，請設定成目前視窗的解析度 (width)。
 #define RESOLUTION_Y     1080           // 全螢幕用，請設定成目前視窗的解析度 (height)。
+#define AUTO_REPEAT      true
 
 /////////////////////////////////////////////////////////////////////////////
 // 定義CGame及CGameState所使用的三個狀態常數

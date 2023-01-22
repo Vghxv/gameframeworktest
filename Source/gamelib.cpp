@@ -549,8 +549,14 @@ namespace game_framework {
 	void CGame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		if (running)
-			if ((nFlags & 0x4000) == 0) // 去除auto repeat
+			if (AUTO_REPEAT) {
 				gameState->OnKeyDown(nChar, nRepCnt, nFlags);
+			}
+			else {
+				if ((nFlags & 0x4000) == 0) // 去除auto repeat
+					gameState->OnKeyDown(nChar, nRepCnt, nFlags);
+			}
+			
 #ifdef _UNITTEST					// invike unit test if _UNITTEST is defined
 		void runTest();
 		if (nChar == 'T')

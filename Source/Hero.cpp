@@ -47,12 +47,13 @@ namespace game_framework {
 	}
 	void Hero::OnMove() {
 
-		int step = 8;
+		int step = 4;
 
 		if (move == 64) {
 			move = 0;
-			_isMovingUp = _isMovingDown = _isMovingLeft = _isMovingRight = false;
+			
 			_walkiter = !_walkiter;
+			_isMovingUp = _isMovingDown = _isMovingLeft = _isMovingRight = false;
 		}
 		if (_isMovingLeft && _direction==left) {
 			_x -= step;
@@ -75,7 +76,7 @@ namespace game_framework {
 	
 		_animation.SetTopLeft(_x, _y);
 		if (_isMovingDown) {
-			if (_direction == down) {
+			if (_direction == down && clock() - last_time >= 500) {
 				_walkiter?_animation.SelectShowBitmap(HERO_DOWN_WALK_1): _animation.SelectShowBitmap(HERO_DOWN_WALK_2);
 			}
 			else {
@@ -87,7 +88,7 @@ namespace game_framework {
 			_animation.SelectShowBitmap(HERO_DOWN);
 		}
 		if (_isMovingUp) {
-			if (_direction == up) {
+			if (_direction == up && clock() - last_time >= 500) {
 				_walkiter?_animation.SelectShowBitmap(HERO_UP_WALK_1): _animation.SelectShowBitmap(HERO_UP_WALK_2);
 			}
 			else {
@@ -99,7 +100,7 @@ namespace game_framework {
 			_animation.SelectShowBitmap(HERO_UP);
 		}
 		if (_isMovingLeft) {
-			if (_direction == left) {
+			if (_direction == left && clock() - last_time >= 500) {
 				_walkiter?_animation.SelectShowBitmap(HERO_LEFT_WALK_1): _animation.SelectShowBitmap(HERO_LEFT_WALK_2);
 			}
 			else {
@@ -111,7 +112,7 @@ namespace game_framework {
 			_animation.SelectShowBitmap(HERO_LEFT);
 		}
 		if (_isMovingRight) {
-			if (_direction == right) {
+			if (_direction == right && clock() - last_time >= 500) {
 				_walkiter?_animation.SelectShowBitmap(HERO_RIGHT_WALK_1): _animation.SelectShowBitmap(HERO_RIGHT_WALK_2);
 			}
 			else {
@@ -122,20 +123,21 @@ namespace game_framework {
 		if (_direction == right&& !_isMovingRight) {
 			_animation.SelectShowBitmap(HERO_RIGHT);
 		}
-		if (_isMovingUpEnable&& clock() -last_time>=1) {
-			_isMovingUp = true;
+		if (_isMovingUpEnable&& clock() -last_time>=1000) {
+
+			if(_direction==up)_isMovingUp = true;
 			last_time = clock();
 		}
-		if (_isMovingDownEnable&& clock() -last_time>=1) {
-			_isMovingDown = true;
+		if (_isMovingDownEnable&& clock() -last_time>=1000) {
+			if(_direction==down)_isMovingDown = true;
 			last_time = clock();
 		}
-		if (_isMovingLeftEnable&& clock() -last_time>=1) {
-			_isMovingLeft = true;
+		if (_isMovingLeftEnable&& clock() -last_time>=1000) {
+			if(_direction==left)_isMovingLeft = true;
 			last_time = clock();
 		}
-		if (_isMovingRightEnable&& clock() -last_time>=1) {
-			_isMovingRight = true;
+		if (_isMovingRightEnable&& clock() -last_time>=1000) {
+			if(_direction==right)_isMovingRight = true;
 			last_time = clock();
 		}
 		_animation.ShowBitmap(0.8);
