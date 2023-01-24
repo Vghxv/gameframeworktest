@@ -13,44 +13,38 @@ namespace game_framework{
 		int getY1();
 		int getY2();
 		int getDirection();
-		void OnMove(bool blocked);
+		void OnMove();
 		void OnShow();
 		void SetDirection(Direction direction);
-		void SetMovingUp(bool flag);
-		void SetMovingDown(bool flag);
-		void SetMovingLeft(bool flag);
-		void SetMovingRight(bool flag);
-		void SetMovingUpEnable(bool flag);
-		void SetMovingDownEnable(bool flag);
-		void SetMovingLeftEnable(bool flag);
-		void SetMovingRightEnable(bool flag);
+		void PressKeyUp(bool flag);
+		void PressKeyDown(bool flag);
+		void PressKeyLeft(bool flag);
+		void PressKeyRight(bool flag);
 		void SetXY(int, int);
-		bool IsAnimationDone();
 		bool IsMoving();
 		void SelectShowBitmap(int index);
 		void LoadBitmap();
-		void init();
 
 	protected:
 		CMovingBitmap _animation;
-		bool _isMovingUp;			
-		bool _isMovingDown;			
-		bool _isMovingLeft;			
-		bool _isMovingRight;		
-		bool _isMovingUpEnable;
-		bool _isMovingDownEnable;
-		bool _isMovingLeftEnable;
-		bool _isMovingRightEnable;
+		bool _MovingUp;
+		bool _TurningUp;
+		bool _MovingDown;
+		bool _TurningDown;
+		bool _MovingLeft;
+		bool _TurningLeft;
+		bool _MovingRight;
+		bool _TurningRight;
+		bool _action_stage;
 	private:
 		int _x, _y;
-		int _v;
 		Direction _direction;
 		bool _walkiter;
-		int move;
 		clock_t last_time;
 		bool _walkalmostdone;
-		bool _slowdown;
-		bool _once;
+		int _movecounter;
+		int _showcounter;
+		const int step = 4;
 
 	};
 }

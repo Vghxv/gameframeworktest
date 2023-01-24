@@ -4,8 +4,7 @@
 #include "CPractice.h"
 #include "CGameMap.h"
 #include "Hero.h"
-#define TILE_X 70
-#define TILE_Y 55
+#define TILE 64
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -60,10 +59,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		clock_t start_time;
-		long long DELAYCYCLE = 500;
-		int temp_current_stage = 0;
-		clock_t last_time;
+		
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖

@@ -20,21 +20,14 @@
 #define HERO_RIGHT_WALK_2 11
 
 namespace game_framework {
-	void Hero::init() {
-		_isMovingUpEnable = _isMovingDownEnable = _isMovingLeftEnable = _isMovingRightEnable = false;
-
-	}
+	
 	Hero::Hero() {
 		_x = _y = 0;
 		_walkiter = true;
-		move = 0;
 		_direction = down;
-		_walkalmostdone=false;
-		_isMovingUp=_isMovingDown=_isMovingLeft=_isMovingRight=false;
-		_v = 1;
-		_once = true;
-		_slowdown = false;
-		init();
+		_action_stage=true;
+		_MovingUp=_MovingDown=_MovingLeft=_MovingRight=false;
+		count = 0;
 	}
 	int Hero::getX1() {
 		return _x;
@@ -48,119 +41,68 @@ namespace game_framework {
 	int Hero::getY2() {
 		return _y + _animation.Height();
 	}
-	void Hero::OnMove(bool blocked) {
-
-		int step = _v;
-
-		if (move >= 64) {
-			move = 0;
-			_walkiter = !_walkiter;
-			_isMovingUp = _isMovingDown = _isMovingLeft = _isMovingRight = false;
-			_walkalmostdone = false;
-			_slowdown = false;
-			_once = true;
+	void Hero::OnMove() {
+		if (_movecounter == 16) {
+			_movecounter = 0;
+			_MovingLeft = _MovingRight = _MovingUp = _MovingDown = false;
 		}
-		if (_v > 8&&_once) {
-			_walkalmostdone = true;
-			_slowdown = true;
-			_once = false;
+		if (_MovingLeft) {
+			_x -= step;
 		}
-		if (!blocked) {
-			if (_isMovingLeft && _direction == left) {
-				_x -= step;
-				move += step;
-				_slowdown ? _v-- : _v++;
-			}
-			else if (_isMovingRight && _direction == right) {
-				_x += step;
-				move += step;
-				_slowdown ? _v-- : _v++;
-			}
-			else if (_isMovingUp && _direction == up) {
-				_y -= step;
-				move += step;
-				_slowdown ? _v-- : _v++;
-			}
-			else if (_isMovingDown && _direction == down) {
-				_y += step;
-				move += step;
-				_slowdown ? _v-- : _v++;
-			}
+		else if (_MovingRight) {
+			_x += step;
 		}
-		else {
-			move += step;
-			_slowdown ? _v-- : _v++;
+		else if (_MovingUp ) {
+			_y -= step;
 		}
+		else if (_MovingDown) {
+			_y += step;
+		}
+		_movecounter++;
 	}
 	void Hero::OnShow() {
 		_animation.SetTopLeft(_x, _y);
-		if (_isMovingDown) {
-			if (_direction == down && !_walkalmostdone) {
-				_walkiter?_animation.SelectShowBitmap(HERO_DOWN_WALK_1): _animation.SelectShowBitmap(HERO_DOWN_WALK_2);
-			}
-			else {
-				_animation.SelectShowBitmap(HERO_DOWN);
-				_direction = down;			
-			}
+		if (count > 8) {
+			_action_stage = false;
+			_walkiter = !_walkiter;
 		}
-		if (_isMovingUp) {
-			if (_direction == up && !_walkalmostdone) {
-				_walkiter?_animation.SelectShowBitmap(HERO_UP_WALK_1): _animation.SelectShowBitmap(HERO_UP_WALK_2);
-			}
-			else {
-				_animation.SelectShowBitmap(HERO_UP);
-				_direction = up;
-			}
-		}
-		if (_direction == up&& !_isMovingUp) {
-			_animation.SelectShowBitmap(HERO_UP);
-		}
-		if (_isMovingLeft) {
-			if (_direction == left && !_walkalmostdone) {
-				_walkiter?_animation.SelectShowBitmap(HERO_LEFT_WALK_1): _animation.SelectShowBitmap(HERO_LEFT_WALK_2);
-			}
-			else {
-				_animation.SelectShowBitmap(HERO_LEFT);
-				_direction = left;
-			}
-		}
-		if (_direction == left&& !_isMovingLeft) {
-			_animation.SelectShowBitmap(HERO_LEFT);
-		}
-		if (_isMovingRight) {
-			if (_direction == right && !_walkalmostdone) {
-				_walkiter?_animation.SelectShowBitmap(HERO_RIGHT_WALK_1): _animation.SelectShowBitmap(HERO_RIGHT_WALK_2);
-			}
-			else {
-				_animation.SelectShowBitmap(HERO_RIGHT);
-				_direction = right;
-			}
-		}
-		if (_direction == right&& !_isMovingRight) {
-			_animation.SelectShowBitmap(HERO_RIGHT);
-		}
-		if (_isMovingUpEnable) {
-			if (_direction == up)_isMovingUp = true;
-		}
-		if (_isMovingDownEnable) {
-			if(_direction==down)_isMovingDown = true;
-		}
-		if (_isMovingLeftEnable) {
-			if(_direction==left)_isMovingLeft = true;
-		}
-		if (_isMovingRightEnable) {
-			if(_direction==right)_isMovingRight = true;
-		}
-		_animation.ShowBitmap();
+		
+		count++;
+		_animation.ShowBitmap(0.8);
 	}
-	void Hero::SetMovingDown(bool flag){_isMovingDown = flag;}
-	void Hero::SetMovingLeft(bool flag){_isMovingLeft = flag;}
-	void Hero::SetMovingRight(bool flag){_isMovingRight = flag;}
-	void Hero::SetMovingUp(bool flag){_isMovingUp = flag;}
-	void Hero::SetMovingDownEnable(bool flag){_isMovingDown = flag;}
-	void Hero::SetMovingLeftEnable(bool flag){_isMovingLeft = flag;}
-	void Hero::SetMovingRightEnable(bool flag){_isMovingRight = flag;}
-	void Hero::SetMovingUpEnable(bool flag){_isMovingUp = flag;}
+	
+	void Hero::PressKeyDown(bool flag){
+		if (_direction == down) {
+			_MovingDown = flag;
+		}
+		else {
+			_TurningDown = flag;
+		}
+	}
+	void Hero::PressKeyUp(bool flag){
+		if (_direction == up) {
+			_MovingUp = flag;
+		}
+		else {
+			_TurningUp = flag;
+		}
+	}
+	void Hero::PressKeyLeft(bool flag){
+		if (_direction == left) {
+			_MovingLeft = flag;
+		}
+		else {
+			_TurningLeft = flag;
+		}
+	}
+	void Hero::PressKeyRight(bool flag){
+		if (_direction == right) {
+			_MovingRight = flag;
+		}
+		else {
+			_TurningRight = flag;
+		}
+	}
 	void Hero::SetXY(int x,int y){
 		_x = x;
 		_y = y;
@@ -177,9 +119,6 @@ namespace game_framework {
 	int Hero::getDirection() {
 		return _direction;
 	}
-	bool Hero::IsAnimationDone(){
-		return _animation.IsAnimationDone();
-	}
 	void Hero::SelectShowBitmap(int index) {
 		_animation.SelectShowBitmap(index);
 	}
@@ -187,6 +126,6 @@ namespace game_framework {
 		_direction = direction;
 	}
 	bool Hero::IsMoving() {
-		return _isMovingDown || _isMovingUp || _isMovingLeft || _isMovingRight;
+		return _MovingDown || _MovingUp ;
 	}
 }
