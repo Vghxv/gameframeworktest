@@ -24,6 +24,7 @@ namespace game_framework{
 		bool IsMoving();
 		void SelectShowBitmap(int index);
 		void LoadBitmap();
+		void test(bool flag);
 
 	protected:
 		CMovingBitmap _animation;
@@ -35,16 +36,15 @@ namespace game_framework{
 		bool _TurningLeft;
 		bool _MovingRight;
 		bool _TurningRight;
-		bool _action_stage;
+		bool _stage;
 	private:
 		int _x, _y;
 		Direction _direction;
 		bool _walkiter;
-		clock_t last_time;
-		bool _walkalmostdone;
 		int _movecounter;
 		int _showcounter;
 		const int step = 4;
-
+		bool _blocked;
+		bool flag;
 	};
 }

@@ -4,7 +4,6 @@
 #include "CPractice.h"
 #include "CGameMap.h"
 #include "Hero.h"
-#define TILE 64
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -39,7 +38,7 @@ namespace game_framework {
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
-	 
+	
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);

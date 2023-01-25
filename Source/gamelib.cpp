@@ -108,7 +108,7 @@ namespace game_framework {
 	CMovingBitmap::CMovingBitmap()
 	{
 		isBitmapLoaded = false;
-	}
+	}												
 
 	int CMovingBitmap::Height()
 	{

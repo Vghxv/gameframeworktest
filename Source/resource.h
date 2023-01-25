@@ -29,10 +29,7 @@
 #define IDB_CONTINUE                    152
 #define IDC_GAMECURSOR                  153
 #define IDB_HELP                        155
-#define IDB_BITMAP2                     156
 #define IDB_LOADING                     156
-#define IDB_BITMAP3                     157
-#define IDB_uh                          157
 #define IDB_PRACTICE                    158
 #define IDB_BLUE                        171
 #define IDB_GREEN                       172

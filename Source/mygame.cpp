@@ -159,7 +159,7 @@ namespace game_framework {
 		//practice.LoadBitmap(IDB_BITMAP3);
 		//c_practice.LoadBitmap();
 		//gamemap.LoadBitmap();
-		test.LoadBitmap("res/grass64.bmp");
+		test.LoadBitmap("res/grass64L.bmp");
 		//
 		// 完成部分Loading動作，提高進度
 		//
@@ -187,6 +187,9 @@ namespace game_framework {
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
+		const char KEY_R = 0x52;
+		const char KEY_A = 0x41;
+
 		if(!brendan.IsMoving()){
 			if (nChar == KEY_LEFT)
 				brendan.PressKeyLeft(true);
@@ -196,6 +199,12 @@ namespace game_framework {
 				brendan.PressKeyUp(true);
 			if (nChar == KEY_DOWN)
 				brendan.PressKeyDown(true);			
+			if (nChar == KEY_A) {
+				brendan.test(true);
+			}
+		}
+		if (nChar == KEY_R) {
+			GotoGameState(GAME_STATE_INIT);
 		}
 		//brendan.OnKeyDown()
 		
@@ -209,6 +218,12 @@ namespace game_framework {
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
+		const char KEY_A = 0x41; // keyboard下箭頭
+	
+		if (nChar == KEY_A) {
+			brendan.test(false);
+		}
+	
 		/*if (nChar == KEY_LEFT)
 			brendan.SetMovingLeftEnable(false);
 		if (nChar == KEY_RIGHT)

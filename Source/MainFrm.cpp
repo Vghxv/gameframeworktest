@@ -258,7 +258,7 @@ void CMainFrame::OnPaint()
 	CRect WindowRect;
 	GetWindowRect(WindowRect);
 
-	MoveWindow(WindowRect.left, WindowRect.top, SIZE_X, SIZE_Y + extra_height);
+	MoveWindow(WindowRect.left, WindowRect.top, SIZE_X+16, SIZE_Y+20 + extra_height);
 }
 
 void CMainFrame::OnButtonFullscreen() 
