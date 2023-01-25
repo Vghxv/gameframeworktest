@@ -27,7 +27,8 @@
 namespace game_framework {
 
 	Hero::Hero() {
-		_x = _y = 0;
+		_x = -59;
+		_y = -5;
 		_walkiter = true;
 		_direction = down;
 		_movecounter = 0;
