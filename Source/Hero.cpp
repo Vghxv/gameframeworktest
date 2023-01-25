@@ -27,8 +27,6 @@
 namespace game_framework {
 
 	Hero::Hero() {
-		_x = -59;
-		_y = -5;
 		_walkiter = true;
 		_direction = down;
 		_movecounter = 0;
@@ -181,7 +179,7 @@ namespace game_framework {
 				_animation.SelectShowBitmap(HERO_DOWN);
 			}
 		}
-		_animation.ShowBitmap(1);
+		_animation.ShowBitmap();
 	}
 	
 	void Hero::PressKeyDown(bool flag){

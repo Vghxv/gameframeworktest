@@ -241,13 +241,7 @@ namespace game_framework {
 		once = _once;
 		delayCount = delay;
 	}
-	void CMovingBitmap::SetAnimation(int delay, bool _once,vector<unsigned> costum_select) {
-		//delay unit is mirco second
-		if (!_once) isAnimation = true;
-		once = _once;
-		delayCount = delay;
-		_costum_select = costum_select;
-	}
+
 
 
 	void CMovingBitmap::ShowBitmap()

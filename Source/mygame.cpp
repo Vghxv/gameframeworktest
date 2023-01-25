@@ -89,8 +89,8 @@ namespace game_framework {
 		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		//brendan.SetXY(-59, -37);
 		test.SetTopLeft(0, -32);
+		brendan.SetXY(-59, -37);
 		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
@@ -153,7 +153,7 @@ namespace game_framework {
 		//practice.LoadBitmap(IDB_BITMAP3);
 		//c_practice.LoadBitmap();
 		//gamemap.LoadBitmap();
-		test.LoadBitmap("res/grass64L.bmp");
+		test.LoadBitmap("res/12096.bmp");
 		//
 		// 完成部分Loading動作，提高進度
 		//
@@ -273,7 +273,7 @@ namespace game_framework {
 		
 		/*for (int i = 0; i < NUMBALLS; i++)
 			ball[i].OnShow();*/				// 貼上第i號球
-		bball.OnShow();						// 貼上彈跳的球
+		//bball.OnShow();						// 貼上彈跳的球
 		//eraser.OnShow();					// 貼上擦子
 		//
 		//  貼上左上及右下角落的圖
