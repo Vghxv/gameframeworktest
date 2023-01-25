@@ -7,17 +7,22 @@
 #include <bitset>
 #include "Hero.h"
 #define HERO_DOWN 0
-#define HERO_UP	1
-#define HERO_LEFT 2
-#define HERO_DOWN_WALK_1 3
-#define HERO_UP_WALK_1 4
-#define HERO_LEFT_WALK_1 5
-#define HERO_DOWN_WALK_2 6
-#define HERO_UP_WALK_2 7
-#define HERO_LEFT_WALK_2 8
-#define HERO_RIGHT 9
-#define HERO_RIGHT_WALK_1 10
-#define HERO_RIGHT_WALK_2 11
+#define HERO_DOWN_WALK_1 1
+#define HERO_DOWN_WALK_2 2
+#define HERO_DOWN_RUN_1 3
+#define HERO_DOWN_RUN_2 4
+#define HERO_DOWN_RUN_3 5
+#define HERO_UP	6
+#define HERO_UP_WALK_1 7
+#define HERO_UP_WALK_2 8
+
+#define HERO_LEFT 12
+#define HERO_LEFT_WALK_1 13
+#define HERO_LEFT_WALK_2 14
+
+#define HERO_RIGHT 18
+#define HERO_RIGHT_WALK_1 19
+#define HERO_RIGHT_WALK_2 20
 
 namespace game_framework {
 
@@ -175,40 +180,20 @@ namespace game_framework {
 				_animation.SelectShowBitmap(HERO_DOWN);
 			}
 		}
-		_animation.ShowBitmap(0.8);
+		_animation.ShowBitmap(1);
 	}
 	
 	void Hero::PressKeyDown(bool flag){
-		if (_direction == down) {
-			_MovingDown = flag;
-		}
-		else {
-			_TurningDown = flag;
-		}
+		(_direction == down)?_MovingDown = flag:_TurningDown = flag;
 	}
 	void Hero::PressKeyUp(bool flag){
-		if (_direction == up) {
-			_MovingUp = flag;
-		}
-		else {
-			_TurningUp = flag;
-		}
+		(_direction == up)?	_MovingUp = flag:_TurningUp = flag;
 	}
 	void Hero::PressKeyLeft(bool flag){
-		if (_direction == left) {
-			_MovingLeft = flag;
-		}
-		else {
-			_TurningLeft = flag;
-		}
+		(_direction == left) ?_MovingLeft = flag:_TurningLeft = flag;
 	}
 	void Hero::PressKeyRight(bool flag){
-		if (_direction == right) {
-			_MovingRight = flag;
-		}
-		else {
-			_TurningRight = flag;
-		}
+		(_direction == right)?_MovingRight = flag:_TurningRight = flag;
 	}
 	void Hero::test(bool flag) {
 		_blocked=flag;
@@ -219,8 +204,8 @@ namespace game_framework {
 	}
 	void Hero::LoadBitmap() {
 		vector<string> tmp;
-		for (int i = 1; i < 13; i++) {
-			tmp.push_back("res/hero_" + to_string(i) + ".bmp");
+		for (int i = 1; i < 37; i++) {
+			tmp.push_back("res/hero_blue_170_" + to_string(i) + ".bmp");
 		}
 		_animation.LoadBitmapByString(tmp,RGB(255,0,228));
 	}

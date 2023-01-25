@@ -61,17 +61,10 @@ namespace game_framework {
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	/////////////////////////////////////////////////////////////////////////////
 
-	//int CGameStateRun::current_stage = 500;
-	//bool CGameStateRun::refresh_animation = false;
-
-
-
 	CGameStateRun::CGameStateRun(CGame *g) : CGameState(g), NUMBALLS(28) {
-		//ball = new CBall[NUMBALLS];
 	}
 
 	CGameStateRun::~CGameStateRun() {
-		//delete[] ball;
 	}
 
 	void CGameStateRun::OnBeginState() {
@@ -96,7 +89,8 @@ namespace game_framework {
 		//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		//hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		//hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		test.SetTopLeft(0, 0);
+		brendan.SetXY(-62, -40);
+		test.SetTopLeft(0, -32);
 		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
