@@ -30,7 +30,6 @@ namespace game_framework {
 		_walkiter = true;
 		_direction = down;
 		_movecounter = 0;
-		_showcounter = 0;
 		_stage = true;
 		_MovingUp = _MovingDown = _MovingLeft = _MovingRight = false;
 		_TurningUp = _TurningDown = _TurningLeft = _TurningRight = false;

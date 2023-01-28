@@ -135,6 +135,8 @@ namespace game_framework {
 		static int					size_x, size_y;
 	};
 
+
+
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供動態(可以移動)的圖形
 	// 每個Public Interface的用法都要懂，Implementation可以不懂
@@ -256,6 +258,7 @@ namespace game_framework {
 		virtual void OnBeginState() {}							// 設定每次進入這個狀態時所需的初值
 		virtual void OnInit() {}								// 狀態的初值及圖形設定
 		virtual void OnKeyDown(UINT, UINT, UINT) {}				// 處理鍵盤Down的動作
+
 		virtual void OnKeyUp(UINT, UINT, UINT) {}				// 處理鍵盤Up的動作
 		virtual void OnLButtonDown(UINT nFlags, CPoint point) {}// 處理滑鼠的動作
 		virtual void OnLButtonUp(UINT nFlags, CPoint point) {}	// 處理滑鼠的動作

@@ -1,10 +1,7 @@
-#include "CEraser.h"
-#include "CBall.h"
-#include "CBouncingBall.h"
-#include "CPractice.h"
-#include "CGameMap.h"
-#include "Hero.h"
 
+
+#include "Hero.h"
+#define TILE 64
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
@@ -52,29 +49,15 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
-		//static bool refresh_animation;
-		//static int current_stage;
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		
-		const int		NUMBALLS;	// 球的總數
-		CMovingBitmap	background;	// 背景圖
+		Hero mycharacter;
 		CMovingBitmap	help;		// 說明圖
-		//CMovingBitmap	practice;
-		//int picX, picY;
-		CBall			*ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖
-		//CEraser			eraser;		// 拍子
-		CInteger		hits_left;	// 剩下的撞擊數
-		CBouncingBall   bball;		// 反覆彈跳的球
-		//CPractice c_practice;
-		//CGameMap gamemap;
-		Hero brendan;
-		CMovingBitmap test;
-		//CMovingBitmap charactorBitmap;
-		
+		CMovingBitmap main_map;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

@@ -120,22 +120,10 @@
     <ClCompile Include="Source\mygame.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CEraser.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CBall.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CBouncingBall.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CPractice.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CGameMap.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Hero.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Map.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,22 +155,10 @@
     <ClInclude Include="Source\mygame.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CEraser.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CBall.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CBouncingBall.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CGameMap.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CPractice.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Hero.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

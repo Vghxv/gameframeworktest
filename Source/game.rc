@@ -102,13 +102,9 @@ IDB_CONTINUE            BITMAP                  "..\\res\\continue.bmp"
 
 IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 
-IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
-IDB_PRACTICE            BITMAP                  "..\\res\\bitmap4.bmp"
 
-IDB_BLUE                BITMAP                  "..\\res\\blue.bmp"
 
-IDB_GREEN               BITMAP                  "..\\res\\green.bmp"
 
 
 

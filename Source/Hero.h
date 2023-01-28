@@ -26,7 +26,8 @@ namespace game_framework{
 		void LoadBitmap();
 		void test(bool flag);
 
-	protected:
+
+	private:
 		CMovingBitmap _animation;
 		bool _MovingUp;
 		bool _TurningUp;
@@ -37,12 +38,10 @@ namespace game_framework{
 		bool _MovingRight;
 		bool _TurningRight;
 		bool _stage;
-	private:
 		int _x, _y;
 		Direction _direction;
 		bool _walkiter;
 		int _movecounter;
-		int _showcounter;
 		const int step = 4;
 		bool _blocked;
 		bool flag;
