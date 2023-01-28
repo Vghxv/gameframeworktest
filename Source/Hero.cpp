@@ -27,6 +27,8 @@
 namespace game_framework {
 
 	Hero::Hero() {
+		_x = -59 + 64 * 7;
+		_y = -33 + 64 * 4;
 		_walkiter = true;
 		_direction = down;
 		_movecounter = 0;
@@ -193,9 +195,6 @@ namespace game_framework {
 	void Hero::PressKeyRight(bool flag){
 		(_direction == right)?_MovingRight = flag:_TurningRight = flag;
 	}
-	void Hero::test(bool flag) {
-		_blocked=flag;
-	}
 	void Hero::SetXY(int x,int y){
 		_x = x;
 		_y = y;
@@ -207,7 +206,6 @@ namespace game_framework {
 		}
 		_animation.LoadBitmapByString(tmp,RGB(255,0,228));
 	}
-	
 	int Hero::getDirection() {
 		return _direction;
 	}

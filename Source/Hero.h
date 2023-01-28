@@ -24,7 +24,6 @@ namespace game_framework{
 		bool IsMoving();
 		void SelectShowBitmap(int index);
 		void LoadBitmap();
-		void test(bool flag);
 
 
 	private:

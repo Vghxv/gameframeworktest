@@ -18,7 +18,6 @@ namespace game_framework {
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 	}
 	void CGameStateInit::OnBeginState() {
-
 	}
 	void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
@@ -29,7 +28,6 @@ namespace game_framework {
 		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 	}
-
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
@@ -59,9 +57,6 @@ namespace game_framework {
 	CGameStateRun::CGameStateRun(CGame *g) : CGameState(g){}
 	CGameStateRun::~CGameStateRun() {}
 	void CGameStateRun::OnBeginState() {
-
-		main_map.SetTopLeft(0, -32-TILE*3);
-		mycharacter.SetXY(-59+TILE*7, -33+TILE*4);
 		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
@@ -78,7 +73,6 @@ namespace game_framework {
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	{
 		ShowInitProgress(33, "hi");	// 接個前一個狀態的進度，此處進度視為33%
-		main_map.LoadBitmap("res/Pokemon_Center_map.bmp");
 		ShowInitProgress(50, "mid");
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
@@ -113,7 +107,7 @@ namespace game_framework {
 			}
 		}
 		if (nChar == KEY_R) {
-			GotoGameState(GAME_STATE_INIT);
+			GotoGameState(GAME_STATE_OVER);
 		}
 	}
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags){
@@ -134,7 +128,6 @@ namespace game_framework {
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
 		//  貼上背景圖、撞擊數、球、擦子、彈跳的球
-		main_map.ShowBitmap();
 		corner.SetTopLeft(0, 0);
 		corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
@@ -167,7 +160,7 @@ namespace game_framework {
 	void CGameStateOver::OnShow(){
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, *fp;
-		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		f.CreatePointFont(300, "Times New Roman");	// 產生 font f; 160表示16 point的字
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));

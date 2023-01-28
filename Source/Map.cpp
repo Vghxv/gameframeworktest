@@ -16,13 +16,13 @@ namespace game_framework{
 	void Map::LoadMaps() {
 
 	}
-	void Map::ShowMainMaps() {
+	void Map::ShowLayer1() {
 
 	}
-	void Map::ShowDynamicMaps() {
+	void Map::ShowLayer2() {
 
 	}
-	void Map::ShowConditionalMaps() {
+	void Map::SetXY() {
 
 	}
 
