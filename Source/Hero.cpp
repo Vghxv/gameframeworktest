@@ -31,7 +31,7 @@ namespace game_framework {
 		_y = -33 + 64 * 4;
 		_walkiter = true;
 		_direction = down;
-		_movecounter = 0;
+		_counter = 0;
 		_stage = true;
 		_MovingUp = _MovingDown = _MovingLeft = _MovingRight = false;
 		_TurningUp = _TurningDown = _TurningLeft = _TurningRight = false;
@@ -51,21 +51,27 @@ namespace game_framework {
 	}
 	void Hero::OnMove() {
 		if (_blocked) {
-			if (_movecounter == 32) {
-				_movecounter = 0;
-				_walkiter = !_walkiter;
-				_MovingUp = _MovingDown = _MovingLeft = _MovingRight = false;
-			}
-			if (_movecounter < 16) {
+			if (_counter < 16) {
 				_stage = true;
 			}
 			else {
 				_stage = false;
 			}
+			if (_counter == 32) {
+				_counter = 0;
+				_walkiter = !_walkiter;
+				_MovingUp = _MovingDown = _MovingLeft = _MovingRight = false;
+			}
 		}
-		else if (_TurningDown || _TurningUp || _TurningLeft || _TurningRight) {
-			if (_movecounter == 8) {
-				_movecounter = 0;
+		else if (_TurningDown || _TurningUp || _TurningLeft || _TurningRight ) {
+			if (_counter < 4) {
+				_stage = true;
+			}
+			else {
+				_stage = false;
+			}
+			if (_counter == 8) {
+				_counter = 0;
 				if (_TurningUp)
 					_direction = up;
 				else if (_TurningDown)
@@ -77,26 +83,20 @@ namespace game_framework {
 				
 				_TurningUp = _TurningDown = _TurningLeft = _TurningRight = false;
 			}
-			if (_movecounter < 4) {
+		}
+		else if(_MovingUp || _MovingDown ||_MovingLeft || _MovingRight){
+			if (_counter < 8) {
 				_stage = true;
 			}
 			else {
 				_stage = false;
 			}
-		}
-		else if(_MovingUp || _MovingDown ||_MovingLeft || _MovingRight){
-			if (_movecounter == 16) {
-				_movecounter = 0;
+			if (_counter == 16) {
+				_counter = 0;
 				_walkiter = !_walkiter;
 				_MovingUp = _MovingDown = _MovingLeft = _MovingRight = false;
 			}
-			if (_movecounter < 8) {
-				_stage = true;
-			}
-			else {
-				_stage = false;
-			}
-			if (_MovingLeft) {
+			else if (_MovingLeft) {
 					_x -= step;
 			}
 			else if (_MovingRight) {
@@ -111,7 +111,7 @@ namespace game_framework {
 		}
 		
 		if(_TurningDown || _TurningUp || _TurningLeft || _TurningRight|| _MovingUp || _MovingDown || _MovingLeft || _MovingRight)
-			_movecounter++;
+			_counter++;
 
 	}
 	void Hero::OnShow() {
@@ -216,6 +216,6 @@ namespace game_framework {
 		_direction = direction;
 	}
 	bool Hero::IsMoving() {
-		return _MovingLeft || _MovingRight || _MovingUp || _MovingDown ;
+		return _MovingLeft || _MovingRight || _MovingUp || _MovingDown||_TurningLeft || _TurningRight || _TurningUp || _TurningDown;
 	}
 }

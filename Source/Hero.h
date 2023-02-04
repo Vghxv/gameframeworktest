@@ -6,6 +6,7 @@ namespace game_framework{
 		left,
 		right
 	};
+	
 	public :
 		Hero();
 		int getX1();
@@ -39,7 +40,7 @@ namespace game_framework{
 		int _x, _y;
 		Direction _direction;
 		bool _walkiter;
-		int _movecounter;
+		int _counter;
 		const int step = 4;
 		bool _blocked;
 		bool flag;
