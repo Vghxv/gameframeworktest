@@ -104,7 +104,7 @@ namespace game_framework {
 		static BOOL  DrawAlpha(unsigned SurfaceID,int X, int Y, LPRECT pRect, BYTE Alpha);
 		static void  BltBitmapToBackAlpha(unsigned SurfaceID, int x, int y, float alpha);
 		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y);
-		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y, double factor);
+		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y, double factor); 
 		static void  BltBitmapToBacksh(unsigned SurfaceID, int x, int y, int factor);
 		static void  BltBitmapToBitmap(unsigned SourceID, unsigned TargetID, int x, int y);
 		static void	 CheckDDFail(char *s);
