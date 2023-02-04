@@ -101,9 +101,11 @@ namespace game_framework {
 		static bool  IsFullScreen();			// 回答是否為全螢幕模式/視窗模式
 	private:
 		CDDraw();								// private constructor
+		static BOOL  DrawAlpha(unsigned SurfaceID,int X, int Y, LPRECT pRect, BYTE Alpha);
 		static void  BltBitmapToBackAlpha(unsigned SurfaceID, int x, int y, float alpha);
 		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y);
 		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y, double factor);
+		static void  BltBitmapToBacksh(unsigned SurfaceID, int x, int y, int factor);
 		static void  BltBitmapToBitmap(unsigned SourceID, unsigned TargetID, int x, int y);
 		static void	 CheckDDFail(char *s);
 		static bool  CreateSurface();
@@ -149,7 +151,7 @@ namespace game_framework {
 		int   Height();						// 取得圖形的高度
 		int   Left();						// 取得圖形的左上角的 x 座標
 		void  SetAnimation(int delay, bool _once);
-		void  ShowBitmapAlpha(float alpha);
+		void  ShowBitmapAlpha(BYTE alpha);
 		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// 載入圖，指定圖的編號(resource)及透明色
 		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
 		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
@@ -158,6 +160,7 @@ namespace game_framework {
 		void  SetTopLeft(int, int);			// 將圖的左上角座標移至 (x,y)
 		void  ShowBitmap();					// 將圖貼到螢幕
 		void  ShowBitmap(double factor);	// 將圖貼到螢幕 factor < 1時縮小，>1時放大。注意：需要VGA卡硬體的支援，否則會很慢
+		void  ShowBitmapsh(int factor);
 		void  SelectShowBitmap(int select);
 		int   GetSelectShowBitmap();
 		void  ToggleAnimation();

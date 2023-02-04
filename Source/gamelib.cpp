@@ -243,9 +243,11 @@ namespace game_framework {
 	}
 
 
-	void CMovingBitmap::ShowBitmapAlpha(float alpha) {
+	void CMovingBitmap::ShowBitmapAlpha(BYTE alpha) {
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
-		CDDraw::BltBitmapToBackAlpha(SurfaceID[selector], location.left, location.top,alpha);
+		RECT tmp;
+		SetRect(&tmp, location.left,location.top,location.right,location.bottom);
+		CDDraw::DrawAlpha(SurfaceID[selector], location.left, location.top,&tmp,alpha);
 	}
 	void CMovingBitmap::ShowBitmap()
 	{
@@ -266,11 +268,29 @@ namespace game_framework {
 			selector = selector % SurfaceID.size();
 		}
 	}
-
 	void CMovingBitmap::ShowBitmap(double factor)
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
 		CDDraw::BltBitmapToBack(SurfaceID[selector], location.left, location.top, factor);
+		if (isAnimation == true && clock() - last_time >= delayCount) {
+			selector += 1;
+			last_time = clock();
+			if (selector == SurfaceID.size() && animationCount > 0) {
+				animationCount -= 1;
+			}
+			if (selector == SurfaceID.size() && (once || animationCount == 0)) {
+				isAnimation = false;
+				isAnimationDone = true;
+				selector = SurfaceID.size() - 1;
+				return;
+			}
+			selector = selector % SurfaceID.size();
+		}
+	}
+	void CMovingBitmap::ShowBitmapsh(int factor)
+	{
+		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
+		CDDraw::BltBitmapToBacksh(SurfaceID[selector], location.left, location.top, factor);
 		if (isAnimation == true && clock() - last_time >= delayCount) {
 			selector += 1;
 			last_time = clock();
@@ -768,6 +788,117 @@ namespace game_framework {
 			CheckDDFail("Blt Back to primary failed");
 		}
 	}
+	BOOL CDDraw::DrawAlpha(unsigned SurfaceID,int X, int Y, LPRECT pRect, BYTE Alpha){
+		//(LONG X, LONG Y, LPRECT pRect
+		int blt_flag;
+		if (BitmapColorKey[SurfaceID] != CLR_INVALID)
+			blt_flag = DDBLT_WAIT | DDBLT_KEYSRC;
+		else
+			blt_flag = DDBLT_WAIT;
+		unsigned __int16 *pSrc, *pDest;
+		unsigned __int32 A, PA;
+		unsigned __int16 Width, Height;
+		unsigned __int32 D1, D2;
+		DDSURFACEDESC ddsdclient;
+		DDSURFACEDESC ddsd;
+		RECT Rect;
+		ZeroMemory(&ddsdclient, sizeof(ddsdclient));
+		ZeroMemory(&ddsd, sizeof(ddsd));
+		ddsdclient.dwSize = sizeof(ddsdclient);
+		ddsdclient.dwFlags = DDSD_ALL;
+		ddsd.dwSize = sizeof(ddsd);
+		ddsd.dwFlags = DDSD_ALL;
+		ddrval = lpDDS[SurfaceID]->Lock(NULL, &ddsdclient, DDLOCK_WAIT, NULL);
+		CheckDDFail("Blt Bitmap to Back Alpha Lock1 Failed");
+		ddrval = lpDDSBack->Lock(NULL, &ddsd, DDLOCK_WAIT, NULL);
+		CheckDDFail("Blt Bitmap to Back Alpha Lock2 Failed");
+		
+		A = Alpha & 0x1F;
+		PA = 0x1F - A;
+		Width = (unsigned __int16)(pRect->right - pRect->left + 1);
+		Height = (unsigned __int16)(pRect->bottom - pRect->top + 1);
+		D1 = (ddsdclient.lPitch - Width + 1) << 1;
+		D2 = (ddsd.lPitch - Width + 1) << 1;
+		SetRect(&Rect, X, Y, X + Width - 1, Y + Height - 1);
+		//ddsd.lpSurface->BackToDILayer(&Rect);
+		pSrc = (unsigned __int16*)ddsdclient.lpSurface + pRect->top*ddsdclient.lPitch + pRect->left;
+		pDest = (unsigned __int16*)ddsd.lpSurface + Y * ddsd.lPitch + X;
+
+		__asm
+		{
+			mov esi, pSrc
+			mov edi, pDest
+			movd mm2, A
+			movd mm3, PA
+
+			mov cx, Height
+			shl ecx, 16
+			mov cx, Width
+
+			LOOPA :
+			ror ecx, 16
+				dec cx
+				jz DONE
+				ror ecx, 16
+
+				LOOPB :
+				dec cx
+				jz NEXTLINE
+				//Process one point
+				mov ax, [esi]
+				mov dx, ax
+				shl eax, 16
+				mov ax, dx
+				and eax, 0x7E0F81F
+				movd edx, mm2
+				mul edx
+				movd mm0, eax
+
+				mov ax, [edi]
+				mov dx, ax
+				shl eax, 16
+				mov ax, dx
+				and eax, 0x7E0F81F
+				movd edx, mm3
+				mul edx
+				movd mm1, eax
+
+				paddd mm0, mm1
+				psrlq mm0, 5
+				movd eax, mm0
+				and eax, 0x7E0F81F
+				mov edx, eax
+				shr edx, 16
+				or eax, edx
+				mov[edi], ax
+
+				inc esi
+				inc edi
+				inc esi
+				inc edi
+				jmp LOOPB
+
+				NEXTLINE :
+			add esi, D1
+				add edi, D2
+				mov cx, Width
+				jmp LOOPA
+
+				DONE :
+			emms
+		}
+
+		ddrval = lpDDSBack->Blt(pRect, lpDDS[SurfaceID], NULL, blt_flag, NULL);
+		ddrval = lpDDS[SurfaceID]->Unlock(NULL);
+		CheckDDFail("Blt Bitmap to Back Alpha Lock3 Failed");
+		ddrval = lpDDSBack->Unlock(NULL);
+		CheckDDFail("Blt Bitmap to Back Alpha Lock4 Failed");
+
+		CheckDDFail("Blt Bitmap to Back Alpha Lock5 Failed");
+		//m_Desc.pAres->DILayerToBack(&Rect);
+
+		return TRUE;
+	}
 	void CDDraw::BltBitmapToBackAlpha(unsigned SurfaceID, int x, int y, float alpha)
 	{
 		GAME_ASSERT(lpDDSBack && (SurfaceID < lpDDS.size()) && lpDDS[SurfaceID], "Internal Error: Incorrect SurfaceID in BltBitmapToBack");
@@ -801,23 +932,18 @@ namespace game_framework {
 		DWORD* pixelsclient = (DWORD*)ddsdclient.lpSurface;
 		DWORD* pixels = (DWORD*)ddsd.lpSurface;
 		
+		
 		for (int i = TargetRect.top; i < TargetRect.bottom; i++) {
-			memcpy(pixels, pixelsclient, 2560); // 若为 32 位色则为 
-			pixelsclient += ddsdclient.dwWidth;
-			pixels += ddsd.dwWidth;
-		}
-		/*for (int i = TargetRect.top; i < TargetRect.bottom; i++) {
 			for (int j = TargetRect.left; j < TargetRect.right; j++) {
-				pixelsclient[i * ddsdclient.dwWidth + j] = (DWORD)pixels[i * ddsd.dwWidth + j] /2 ;
-				//(DWORD)pixelsclient[(i - TargetRect.top) * 50 + j - TargetRect.left] / 2;
+				pixels[i * ddsd.dwWidth + j] = (DWORD)pixels[i * ddsd.dwWidth + j]&0xFF00FF;
 			}
-		}*/
+		}
 		ddrval = lpDDS[SurfaceID]->Unlock(NULL);
 		CheckDDFail("Blt Bitmap to Back Alpha Lock4 Failed");
 		ddrval = lpDDSBack->Unlock(NULL);
 		CheckDDFail("Blt Bitmap to Back Alpha Lock4 Failed");
 
-		ddrval = lpDDSBack->Blt(TargetRect, lpDDS[SurfaceID], NULL, blt_flag, NULL);
+		//ddrval = lpDDSBack->Blt(TargetRect, lpDDS[SurfaceID], NULL, blt_flag, NULL);
 		CheckDDFail("Blt Bitmap to Back Alpha Lock3 Failed");
 
 	}
@@ -844,21 +970,44 @@ namespace game_framework {
 		ddrval = lpDDSBack->Blt(TargetRect, lpDDS[SurfaceID], NULL, blt_flag, NULL);
 		CheckDDFail("Blt Bitmap to Back Failed");
 	}
+	void CDDraw::BltBitmapToBacksh(unsigned SurfaceID, int x, int y, int factor) {
+		x = CDDraw::IsFullScreen() ? x + (RESOLUTION_X - SIZE_X) / 2 : x;
+		y = CDDraw::IsFullScreen() ? y + (RESOLUTION_Y - SIZE_Y) / 2 : y;
+		GAME_ASSERT(lpDDSBack && (SurfaceID < lpDDS.size()) && lpDDS[SurfaceID], "Internal Error: Incorrect SurfaceID in BltBitmapToBack");
+		CRect TargetRect;
+		TargetRect.left = x;
+		TargetRect.top = y;
+		TargetRect.right = x + (int)((BitmapRect[SurfaceID].right - BitmapRect[SurfaceID].left)<<factor);
+		TargetRect.bottom = y + (int)((BitmapRect[SurfaceID].bottom - BitmapRect[SurfaceID].top)<<factor);
+		if (factor == 0) {
+			return;
+		}
+		int blt_flag;
+		if (BitmapColorKey[SurfaceID] != CLR_INVALID)
+			blt_flag = DDBLT_WAIT | DDBLT_KEYSRC;
+		else
+			blt_flag = DDBLT_WAIT;
+		if (lpDDSBack->IsLost())
+			RestoreSurface();
+		if (lpDDS[SurfaceID]->IsLost())
+			RestoreSurface();
+		ddrval = lpDDSBack->Blt(TargetRect, lpDDS[SurfaceID], NULL, blt_flag, NULL);
+		CheckDDFail("Blt Bitmap to Back Failed");
+	}
 
 	void CDDraw::BltBitmapToBack(unsigned SurfaceID, int x, int y, double factor)
 	{
+		x = CDDraw::IsFullScreen() ? x + (RESOLUTION_X - SIZE_X) / 2 : x;
+		y = CDDraw::IsFullScreen() ? y + (RESOLUTION_Y - SIZE_Y) / 2 : y;
 		GAME_ASSERT(lpDDSBack && (SurfaceID < lpDDS.size()) && lpDDS[SurfaceID], "Internal Error: Incorrect SurfaceID in BltBitmapToBack");
 		CRect TargetRect;
 		TargetRect.left = x;
 		TargetRect.top = y;
 		TargetRect.right = x + (int)((BitmapRect[SurfaceID].right - BitmapRect[SurfaceID].left)*factor);
 		TargetRect.bottom = y + (int)((BitmapRect[SurfaceID].bottom - BitmapRect[SurfaceID].top)*factor);
-
-
 		if (factor == 0) {
 			return;
 		}
-
 		int blt_flag;
 		if (BitmapColorKey[SurfaceID] != CLR_INVALID)
 			blt_flag = DDBLT_WAIT | DDBLT_KEYSRC;

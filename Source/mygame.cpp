@@ -72,6 +72,7 @@ namespace game_framework {
 	}
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	{
+	
 		ShowInitProgress(33, "hi");	// 接個前一個狀態的進度，此處進度視為33%
 		ShowInitProgress(50, "mid");
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此
@@ -131,8 +132,8 @@ namespace game_framework {
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
 		
-		transblack.ShowBitmap();
 		tt.ShowBitmap();
+		//transblack.ShowBitmap();
 		corner.SetTopLeft(0, 0);
 		corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
@@ -154,6 +155,7 @@ namespace game_framework {
 	void CGameStateOver::OnBeginState()
 	{
 		counter = 30 * 5; // 5 seconds
+
 	}
 
 	void CGameStateOver::OnInit()
