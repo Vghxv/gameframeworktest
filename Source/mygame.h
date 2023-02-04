@@ -52,8 +52,10 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		Hero mycharacter;
+		CMovingBitmap   tt;
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
+		CMovingBitmap   transblack;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

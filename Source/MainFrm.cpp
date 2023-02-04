@@ -144,11 +144,10 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
 
-	//	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE
-	//		| WS_THICKFRAME | WS_SYSMENU | WS_MINIMIZEBOX;
+	//	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE| WS_THICKFRAME | WS_SYSMENU | WS_MINIMIZEBOX;
 
 	cs.cx = SIZE_X; cs.cy = SIZE_Y;
-	cs.style = WS_SYSMENU | WS_MINIMIZEBOX;
+	cs.style = WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
     cs.x = (::GetSystemMetrics(SM_CXSCREEN) - cs.cx) / 2; 
 	cs.y = (::GetSystemMetrics(SM_CYSCREEN) - cs.cy) / 2; 
 	//  Set priority level

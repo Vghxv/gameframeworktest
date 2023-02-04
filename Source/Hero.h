@@ -25,7 +25,6 @@ namespace game_framework{
 		void SelectShowBitmap(int index);
 		void LoadBitmap();
 
-
 	private:
 		CMovingBitmap _animation;
 		bool _MovingUp;

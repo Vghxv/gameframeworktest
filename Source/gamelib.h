@@ -11,13 +11,13 @@
 #define OPEN_AS_FULLSCREEN	 false		// 是否以全螢幕方式開啟遊戲
 #define SHOW_LOAD_PROGRESS   true		// 是否顯示loading(OnInit)的進度
 #define DEFAULT_BG_COLOR	 RGB(0, 0, 0)	// 遊戲畫面預設的背景顏色(黑色)
-#define GAME_CYCLE_TIME		 15			// 每33ms跑一次Move及Show(每秒30次)
-#define SHOW_GAME_CYCLE_TIME false		// 是否在debug mode顯示cycle time
+#define GAME_CYCLE_TIME		 15		// 每33ms跑一次Move及Show(每秒30次)
+#define SHOW_GAME_CYCLE_TIME true		// 是否在debug mode顯示cycle time
 #define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
 #define ENABLE_AUDIO		 true		// 啟動音效介面
 #define ENABLE_TOOLBAR       true       // 是否關閉 toolbar
-#define ENABLE_MENU          false      // 是否關閉 menu
-#define ENABLE_STATUSBAR     false      // 是否關閉 statusbar
+#define ENABLE_MENU          true      // 是否關閉 menu
+#define ENABLE_STATUSBAR     true      // 是否關閉 statusbar
 #define RESOLUTION_X     1920           // 全螢幕用，請設定成目前視窗的解析度 (width)。
 #define RESOLUTION_Y     1080           // 全螢幕用，請設定成目前視窗的解析度 (height)。
 #define AUTO_REPEAT		true
@@ -101,6 +101,7 @@ namespace game_framework {
 		static bool  IsFullScreen();			// 回答是否為全螢幕模式/視窗模式
 	private:
 		CDDraw();								// private constructor
+		static void  BltBitmapToBackAlpha(unsigned SurfaceID, int x, int y, float alpha);
 		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y);
 		static void  BltBitmapToBack(unsigned SurfaceID, int x, int y, double factor);
 		static void  BltBitmapToBitmap(unsigned SourceID, unsigned TargetID, int x, int y);
@@ -148,6 +149,7 @@ namespace game_framework {
 		int   Height();						// 取得圖形的高度
 		int   Left();						// 取得圖形的左上角的 x 座標
 		void  SetAnimation(int delay, bool _once);
+		void  ShowBitmapAlpha(float alpha);
 		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// 載入圖，指定圖的編號(resource)及透明色
 		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
 		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
@@ -171,7 +173,6 @@ namespace game_framework {
 		bool isAnimation = false;
 		bool isAnimationDone = true;
 		bool once = false;
-		vector <unsigned> _costum_select;
 		vector<unsigned> SurfaceID;
 		bool     isBitmapLoaded = false;	// whether a bitmap has been loaded
 		CRect    location;			// location of the bitmap

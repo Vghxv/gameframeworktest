@@ -65,23 +65,26 @@ namespace game_framework {
 	void CGameStateRun::OnMove(){
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR))
-		//			CAudio::Instance()->Stop(AUDIO_LAKE);	// 停止 WAVE
-		//			CAudio::Instance()->Stop(AUDIO_NTUT);	// 停止 MIDI
-		//			GotoGameState(GAME_STATE_OVER);
+		//CAudio::Instance()->Stop(AUDIO_LAKE);	// 停止 WAVE
+		//CAudio::Instance()->Stop(AUDIO_NTUT);	// 停止 MIDI
+		//GotoGameState(GAME_STATE_OVER);
 		mycharacter.OnMove();
 	}
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	{
 		ShowInitProgress(33, "hi");	// 接個前一個狀態的進度，此處進度視為33%
 		ShowInitProgress(50, "mid");
-		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-		//help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
-		corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
+		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此
+		corner.LoadBitmap(IDB_CORNER);
+		transblack.LoadBitmap("RES/transblack.bmp");
 		mycharacter.LoadBitmap();
+		tt.LoadBitmap("res/Pokemon_Center_map.bmp");
+		tt.SetTopLeft(0, 32);
 		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 		CAudio::Instance()->Load(AUDIO_NTUT, "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
+
 	}
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -127,7 +130,9 @@ namespace game_framework {
 		//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
-		//  貼上背景圖、撞擊數、球、擦子、彈跳的球
+		
+		transblack.ShowBitmap();
+		tt.ShowBitmap();
 		corner.SetTopLeft(0, 0);
 		corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
