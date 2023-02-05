@@ -12,58 +12,28 @@ namespace game_framework{
 		_x = x;
 		_y = y;
 	}
-	void Map::LoadLayer1( ) {
+	void Map::LoadLayer( ) {
+
+	
 
 	}
-	void Map::LoadLayer2() {
-
-	}
-	void Map::LoadLayer3() {
-
-	}
-	void Map::ShowLayer1() {
+	void Map::ShowLayer(int a) {
 		for (int i = 0; i < _height; i++) {
 			for (int j = 0; j < _width; j++) {
 
-				_Layer1[i][j].ShowBitmap();
+				_Layer[a][i][j].ShowBitmap();
 			}
 		}
 	}
-	void Map::ShowLayer2() {
+	
+	void Map::UnShowLayer(int a){
 		for (int i = 0; i < _height; i++) {
 			for (int j = 0; j < _width; j++) {
-				_Layer2[i][j].ShowBitmap();
+				_Layer[a][i][j].UnshowBitmap();
 			}
 		}
 	}
-	void Map::ShowLayer3() {
-		for (int i = 0; i < _height; i++) {
-			for (int j = 0; j < _width; j++) {
-				_Layer3[i][j].ShowBitmap();
-			}
-		}
-	}
-	void Map::UnShowLayer1(){
-		for (int i = 0; i < _height; i++) {
-			for (int j = 0; j < _width; j++) {
-				_Layer1[i][j].UnshowBitmap();
-			}
-		}
-	}
-	void Map::UnShowLayer2(){
-		for (int i = 0; i < _height; i++) {
-			for (int j = 0; j < _width; j++) {
-				_Layer2[i][j].UnshowBitmap();
-			}
-		}
-	}
-	void Map::UnShowLayer3(){
-		for (int i = 0; i < _height; i++) {
-			for (int j = 0; j < _width; j++) {
-				_Layer3[i][j].UnshowBitmap();
-			}
-		}
-	}
+	
 	void Map::SetXY() {
 
 	}

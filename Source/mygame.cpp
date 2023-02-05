@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <iostream>
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
@@ -28,8 +29,7 @@ namespace game_framework {
 		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 	}
-	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
-	{
+	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)	{
 		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 	}
 	void CGameStateInit::OnShow()
@@ -70,14 +70,16 @@ namespace game_framework {
 		//GotoGameState(GAME_STATE_OVER);
 		mycharacter.OnMove();
 	}
-	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
-	{
-	
-		ShowInitProgress(33, "hi");	// 接個前一個狀態的進度，此處進度視為33%
-		ShowInitProgress(50, "mid");
+	void CGameStateRun::OnInit()  {
+		ifstream in("Config/config.txt");
+		for (int r = 0; r < 1; r++) {
+			
+		}
+		ShowInitProgress(10, "hi22222222222222");	// 接個前一個狀態的進度，此處進度視為33%
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此
+		ShowInitProgress(50, "mid");
 		corner.LoadBitmap(IDB_CORNER);
-		transblack.LoadBitmap("RES/transblack.bmp");
+		//transblack.LoadBitmap("RES/transblack.bmp");
 		mycharacter.LoadBitmap();
 		tt.LoadBitmap("res/Pokemon_Center_map.bmp");
 		tt.SetTopLeft(0, 32);

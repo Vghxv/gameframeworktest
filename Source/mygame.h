@@ -1,4 +1,5 @@
 #include "Hero.h"
+#include "Map.h"
 #define TILE 64
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -51,11 +52,12 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
+		vector<Map> mymaps;
 		Hero mycharacter;
 		CMovingBitmap   tt;
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
-		CMovingBitmap   transblack;
+		//CMovingBitmap   transblack;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

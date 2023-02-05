@@ -5,21 +5,14 @@ namespace game_framework {
 	public:
 		Map(int height,int width);
 
-		void LoadLayer1();
-		void LoadLayer2();
-		void LoadLayer3();
-		void ShowLayer1();
-		void ShowLayer2();
-		void ShowLayer3();
-		void UnShowLayer1();
-		void UnShowLayer2();
-		void UnShowLayer3();
+		void LoadLayer();
+		void ShowLayer(int a);
+	
+		void UnShowLayer(int a);
 
 		void SetXY();
 	private:
-		vector<vector<CMovingBitmap> > _Layer1;
-		vector<vector<CMovingBitmap> > _Layer2;
-		vector<vector<CMovingBitmap> > _Layer3;
+		vector<vector<vector<CMovingBitmap> >> _Layer;
 		int _height;
 		int _width;
 
