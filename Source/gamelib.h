@@ -151,7 +151,6 @@ namespace game_framework {
 		int   Height();						// 取得圖形的高度
 		int   Left();						// 取得圖形的左上角的 x 座標
 		void  SetAnimation(int delay, bool _once);
-		void  ShowBitmapAlpha(BYTE alpha);
 		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// 載入圖，指定圖的編號(resource)及透明色
 		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
 		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
@@ -160,7 +159,6 @@ namespace game_framework {
 		void  SetTopLeft(int, int);			// 將圖的左上角座標移至 (x,y)
 		void  ShowBitmap();					// 將圖貼到螢幕
 		void  ShowBitmap(double factor);	// 將圖貼到螢幕 factor < 1時縮小，>1時放大。注意：需要VGA卡硬體的支援，否則會很慢
-		void  ShowBitmapsh(int factor);
 		void  SelectShowBitmap(int select);
 		int   GetSelectShowBitmap();
 		void  ToggleAnimation();
@@ -168,6 +166,8 @@ namespace game_framework {
 		int   Width();						// 取得圖形的寬度
 		bool  IsAnimationDone();
 		int   GetMovingBitmapFrame();
+		void  ShowBitmapsh(int factor);		// the same with ShowBitmap(double factor) but use bitwise operation
+		void  ShowBitmapAlpha(float alpha);  //this function is under development
 	protected:
 		int selector = 0;
 		int delayCount = 10;
@@ -262,7 +262,6 @@ namespace game_framework {
 		virtual void OnBeginState() {}							// 設定每次進入這個狀態時所需的初值
 		virtual void OnInit() {}								// 狀態的初值及圖形設定
 		virtual void OnKeyDown(UINT, UINT, UINT) {}				// 處理鍵盤Down的動作
-
 		virtual void OnKeyUp(UINT, UINT, UINT) {}				// 處理鍵盤Up的動作
 		virtual void OnLButtonDown(UINT nFlags, CPoint point) {}// 處理滑鼠的動作
 		virtual void OnLButtonUp(UINT nFlags, CPoint point) {}	// 處理滑鼠的動作

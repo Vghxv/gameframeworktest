@@ -57,7 +57,7 @@ namespace game_framework {
 		CMovingBitmap   tt;
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
-		//CMovingBitmap   transblack;
+		CMovingBitmap   transblack;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

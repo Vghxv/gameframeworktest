@@ -34,8 +34,9 @@ namespace game_framework{
 		}
 	}
 	
-	void Map::SetXY() {
-
+	void Map::SetXY(int x, int y) {
+		_x = x;
+		_y = y;
 	}
 
 

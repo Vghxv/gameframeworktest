@@ -2,7 +2,8 @@
 #include "Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
-#include <iostream>
+#include <fstream>
+
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
@@ -57,9 +58,9 @@ namespace game_framework {
 	CGameStateRun::CGameStateRun(CGame *g) : CGameState(g){}
 	CGameStateRun::~CGameStateRun() {}
 	void CGameStateRun::OnBeginState() {
-		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
+		CAudio::Instance()->Play(AUDIO_LAKE, false);			// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
-		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
+		CAudio::Instance()->Play(AUDIO_NTUT, false);			// 撥放 MIDI
 	}
 
 	void CGameStateRun::OnMove(){
@@ -79,7 +80,7 @@ namespace game_framework {
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此
 		ShowInitProgress(50, "mid");
 		corner.LoadBitmap(IDB_CORNER);
-		//transblack.LoadBitmap("RES/transblack.bmp");
+		transblack.LoadBitmap("RES/transblack.bmp");
 		mycharacter.LoadBitmap();
 		tt.LoadBitmap("res/Pokemon_Center_map.bmp");
 		tt.SetTopLeft(0, 32);
@@ -98,7 +99,9 @@ namespace game_framework {
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
 		const char KEY_R = 0x52;
 		const char KEY_A = 0x41;
-		if(!mycharacter.IsMoving()){
+		const char KEY_F = 0x09;
+
+		if(mycharacter.getMovingState()==Hero::MovingState::still){
 			if (nChar == KEY_LEFT) {
 				mycharacter.PressKeyLeft(true);
 			}				
@@ -110,6 +113,9 @@ namespace game_framework {
 			}
 			if (nChar == KEY_DOWN) {
 				mycharacter.PressKeyDown(true);			
+			}
+			if (nChar == KEY_F) {
+				mycharacter.PressKeyF(true);			
 			}
 		}
 		if (nChar == KEY_R) {
@@ -135,7 +141,7 @@ namespace game_framework {
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
 		
 		tt.ShowBitmap();
-		//transblack.ShowBitmap();
+		//transblack.ShowBitmapAlpha(0.5);
 		corner.SetTopLeft(0, 0);
 		corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());

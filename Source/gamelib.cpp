@@ -1,5 +1,6 @@
 ﻿//#define	 INITGUID
 #include "stdafx.h"
+#include <wincodec.h>
 #include "game.h"
 #include "MainFrm.h"
 #include "Resource.h"
@@ -243,11 +244,11 @@ namespace game_framework {
 	}
 
 
-	void CMovingBitmap::ShowBitmapAlpha(BYTE alpha) {
+	void CMovingBitmap::ShowBitmapAlpha(float alpha) {
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
 		RECT tmp;
 		SetRect(&tmp, location.left,location.top,location.right,location.bottom);
-		CDDraw::DrawAlpha(SurfaceID[selector], location.left, location.top,&tmp,alpha);
+		CDDraw::BltBitmapToBackAlpha(SurfaceID[selector], location.left, location.top,alpha);
 	}
 	void CMovingBitmap::ShowBitmap()
 	{
@@ -935,7 +936,7 @@ namespace game_framework {
 		
 		for (int i = TargetRect.top; i < TargetRect.bottom; i++) {
 			for (int j = TargetRect.left; j < TargetRect.right; j++) {
-				pixels[i * ddsd.dwWidth + j] = (DWORD)pixels[i * ddsd.dwWidth + j]&0xFF00FF;
+				pixels[i * ddsd.dwWidth + j] = (DWORD)pixels[i * ddsd.dwWidth + j]&0x0000FF;
 			}
 		}
 		ddrval = lpDDS[SurfaceID]->Unlock(NULL);
