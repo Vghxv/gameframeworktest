@@ -14,8 +14,6 @@ namespace game_framework{
 	}
 	void Map::LoadLayer( ) {
 
-	
-
 	}
 	void Map::ShowLayer(int a) {
 		for (int i = 0; i < _height; i++) {

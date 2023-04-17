@@ -72,10 +72,7 @@ namespace game_framework {
 		mycharacter.OnMove();
 	}
 	void CGameStateRun::OnInit()  {
-		ifstream in("Config/config.txt");
-		for (int r = 0; r < 1; r++) {
-			
-		}
+		
 		ShowInitProgress(10, "hi22222222222222");	// 接個前一個狀態的進度，此處進度視為33%
 		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此
 		ShowInitProgress(50, "mid");
